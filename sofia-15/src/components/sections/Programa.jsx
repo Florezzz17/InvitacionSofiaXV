@@ -66,14 +66,15 @@ export default function Programa() {
         position: 'relative',
       }}>
         <div style={{
-          position: 'absolute',
-          left: '50%',
-          top: '24px',
-          bottom: '24px',
-          width: '1px',
-          background: 'linear-gradient(180deg, transparent, rgba(245,230,66,0.4), transparent)',
-          transform: 'translateX(-50%)',
-        }} />
+        position: 'absolute',
+        left: '50%',
+        top: '24px',
+        bottom: '24px',
+        width: '3px',
+        background: 'linear-gradient(180deg, transparent, #f5e642, #f5e642, transparent)',
+        transform: 'translateX(-50%)',
+        boxShadow: '0 0 12px rgba(245,230,66,0.8), 0 0 24px rgba(245,230,66,0.4)',
+    }} />
 
         {eventos.map((evento, i) => {
           const isLeft = i % 2 === 0
