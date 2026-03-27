@@ -95,11 +95,11 @@ export default function Story() {
       <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
         <p style={{
           fontFamily: "'Cormorant Garamond', serif",
-          color: 'rgba(245,230,66,0.7)',
-          fontSize: 'clamp(0.8rem, 2vw, 0.9rem)',
+          color: 'rgb(245, 230, 66)',
+          fontSize: 'clamp(1.8rem, 2vw, 0.9rem)',
           letterSpacing: '0.45em',
           textTransform: 'uppercase',
-          marginBottom: '0.75rem',
+          marginBottom: '0.95rem',
         }}>
           — Un viaje de luz y sueños —
         </p>
@@ -156,8 +156,8 @@ export default function Story() {
       {/* Hint de scroll */}
       <p style={{
         fontFamily: "'Cormorant Garamond', serif",
-        color: 'rgba(255,255,255,0.3)',
-        fontSize: '0.75rem',
+        color: 'rgb(255, 255, 255)',
+        fontSize: '1.75rem',
         letterSpacing: '0.25em',
         textTransform: 'uppercase',
         marginTop: '1rem',

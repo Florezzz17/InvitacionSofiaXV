@@ -41,7 +41,7 @@ export default function Hero() {
           fontWeight: '700',
           lineHeight: 1.05,
           marginBottom: '0.4rem',
-          textShadow: '0 0 60px rgba(245,230,66,0.4), 0 2px 20px rgba(0,0,0,0.8)',
+          textShadow: '0 0 60px rgb(245, 230, 66), 0 2px 20px rgba(0,0,0,0.8)',
         }}>
           Sofía
         </h1>
@@ -69,14 +69,14 @@ export default function Hero() {
 
         <div style={{
           width: '80px', height: '1px',
-          background: 'linear-gradient(90deg, transparent, rgba(245,230,66,0.7), transparent)',
+          background: 'linear-gradient(90deg, transparent, rgb(245, 230, 66), transparent)',
           margin: '0 auto 2rem',
         }} />
 
         <p style={{
           fontFamily: "'Cormorant Garamond', serif",
-          color: 'rgba(255,255,255,0.7)',
-          fontSize: 'clamp(0.95rem, 2.5vw, 1.15rem)',
+          color: 'rgb(255, 255, 255)',
+          fontSize: 'clamp(1.90rem, 1.8vw, 1.15rem)',
           letterSpacing: '0.12em',
           marginBottom: '2rem',
         }}>
@@ -88,8 +88,8 @@ export default function Hero() {
         <p style={{
           fontFamily: "'Cormorant Garamond', serif",
           fontStyle: 'italic',
-          color: 'rgba(255,255,255,0.45)',
-          fontSize: 'clamp(0.8rem, 2vw, 0.9rem)',
+          color: 'rgb(255, 255, 255)',
+          fontSize: 'clamp(1.5rem, 2vw, 0.9rem)',
           marginTop: '2rem',
         }}>
           📍 Finca 8, Vda. La Mata · Autopista Piedecuesta, Floridablanca
@@ -99,7 +99,7 @@ export default function Hero() {
           <span style={{ color: 'rgba(245,230,66,0.5)', fontSize: '1.4rem' }}>↓</span>
           <p style={{
             fontFamily: "'Cormorant Garamond', serif",
-            color: 'rgba(255,255,255,0.35)',
+            color: 'rgb(255, 255, 255)',
             fontSize: '0.7rem',
             letterSpacing: '0.3em',
             textTransform: 'uppercase',

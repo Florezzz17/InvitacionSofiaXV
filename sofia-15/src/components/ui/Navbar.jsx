@@ -1,10 +1,11 @@
-import { Home, BookOpen, MapPin, Calendar } from 'lucide-react'
+import { Home, BookOpen, MapPin, Calendar, Mail } from 'lucide-react'
 
 const links = [
   { id: 'hero',     label: 'Home',     Icon: Home },
   { id: 'story',    label: 'Story',    Icon: BookOpen },
   { id: 'details',  label: 'Details',  Icon: MapPin },
   { id: 'programa', label: 'Programa', Icon: Calendar },
+  { id: 'sobres',   label: 'Sobres',   Icon: Mail },
 ]
 
 export default function Navbar() {
