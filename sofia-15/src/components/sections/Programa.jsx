@@ -54,7 +54,7 @@ export default function Programa() {
           fontFamily: "'Cinzel Decorative', cursive",
           color: '#ffffff',
           fontSize: 'clamp(1.8rem, 5vw, 3rem)',
-          textShadow: '0 0 40px rgba(245,230,66,0.3)',
+          textShadow: '0 0 40px rgb(245, 230, 66)',
         }}>Programa</h2>
       </div>
 

@@ -1,12 +1,14 @@
 import { useState } from 'react'
-import { Home, BookOpen, MapPin, Calendar, Mail, X, Menu } from 'lucide-react'
+import { Home, BookOpen, MapPin, Calendar, Mail, Shirt, Star, X, Menu } from 'lucide-react'
 
 const links = [
-  { id: 'hero',     label: 'Home',     Icon: Home },
-  { id: 'story',    label: 'Story',    Icon: BookOpen },
-  { id: 'details',  label: 'Details',  Icon: MapPin },
-  { id: 'programa', label: 'Programa', Icon: Calendar },
-  { id: 'sobres',   label: 'Sobres',   Icon: Mail },
+  { id: 'hero',         label: 'Home',      Icon: Home },
+  { id: 'story',        label: 'Story',     Icon: BookOpen },
+  { id: 'details',      label: 'Details',   Icon: MapPin },
+  { id: 'programa',     label: 'Programa',  Icon: Calendar },
+  { id: 'dresscode',    label: 'Dress Code',Icon: Shirt },
+  { id: 'sobres',       label: 'Sobres',    Icon: Mail },
+  { id: 'confirmacion', label: 'Confirmar', Icon: Star },
 ]
 
 export default function Navbar() {
