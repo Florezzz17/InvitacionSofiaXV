@@ -186,7 +186,7 @@ export default function Confirmacion() {
               animation: 'fadeInUp 0.6s ease 0.4s both',
             }}>
               Sofía y su familia te esperan con los<br/>
-              brazos abiertos el <span style={{ color: '#f5e642', fontStyle: 'italic' }}>16 de Diciembre</span>.<br/>
+              brazos abiertos el <span style={{ color: '#f5e642', fontStyle: 'italic' }}>19 de Diciembre</span>.<br/>
               ¡Será una noche inolvidable! 🌌
             </p>
 
