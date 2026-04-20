@@ -21,35 +21,26 @@ export default function Confirmacion() {
   const [particles, setParticles] = useState([])
 
   const handleConfirmar = () => {
-    // Lanzar animación de estrellas
-    const newParticles = Array.from({ length: 150 }, (_, i) => ({
-      id: i,
-      left: `${Math.random() * 100}vw`,
-      top: `${Math.random() * -20}vh`,
-      fontSize: `${Math.random() * 1.5 + 0.8}rem`,
-      animationDelay: `${Math.random() * 1.5}s`,
-      animationDuration: `${Math.random() * 1.5 + 1.5}s`,
-    }))
-    setParticles(newParticles)
-    setConfirmado(true)
-    setTimeout(() => setParticles([]), 4000)
+  // 1. Abrir WhatsApp INMEDIATAMENTE (mismo hilo del click)
+  const numero = '573184153751' // 👈 cambia por tu número
+  const mensaje = encodeURIComponent(
+    '¡Hola! Confirmo mi asistencia y la de mis acompañantes a los XV años de Sofía el 19 de Diciembre de 2026. ¡Nos vemos pronto! 🌟'
+  )
+  window.open(`https://wa.me/${numero}?text=${mensaje}`, '_blank')
 
-    // Redirigir a WhatsApp después de 1.5 segundos
-    // 👇 Cambia el número por el tuyo (formato internacional sin + ni espacios)
-    const numero = '573184153751'
-    const mensaje = encodeURIComponent(
-      '¡Hola! Confirmo mi asistencia y la de mis acompañantes a los XV años de Sofía el 19 de Diciembre de 2026. ¡Nos vemos pronto! 🌟'
-    )
-    setTimeout(() => {
-  const link = document.createElement('a')
-  link.href = `https://wa.me/${numero}?text=${mensaje}`
-  link.target = '_blank'
-  link.rel = 'noopener noreferrer'
-  document.body.appendChild(link)
-  link.click()
-  document.body.removeChild(link)
-}, 1500)
-  }
+  // 2. Mostrar animación después
+  const newParticles = Array.from({ length: 150 }, (_, i) => ({
+    id: i,
+    left: `${Math.random() * 100}vw`,
+    top: `${Math.random() * -20}vh`,
+    fontSize: `${Math.random() * 1.5 + 0.8}rem`,
+    animationDelay: `${Math.random() * 1.5}s`,
+    animationDuration: `${Math.random() * 1.5 + 1.5}s`,
+  }))
+  setParticles(newParticles)
+  setConfirmado(true)
+  setTimeout(() => setParticles([]), 4000)
+}
 
 
   //sasdasdasdadasdasda
