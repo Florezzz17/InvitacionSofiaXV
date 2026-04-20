@@ -2,11 +2,11 @@ import { useState } from 'react'
 import { Home, BookOpen, MapPin, Calendar, Mail, Shirt, Star, X, Menu } from 'lucide-react'
 
 const links = [
-  { id: 'hero',         label: 'Home',      Icon: Home },
-  { id: 'story',        label: 'Story',     Icon: BookOpen },
-  { id: 'details',      label: 'Details',   Icon: MapPin },
-  { id: 'programa',     label: 'Programa',  Icon: Calendar },
-  { id: 'dresscode',    label: 'Dress Code',Icon: Shirt },
+  { id: 'hero',         label: 'Inicio',      Icon: Home },
+  { id: 'story',        label: 'Historia',     Icon: BookOpen },
+  { id: 'details',      label: 'Detalles',   Icon: MapPin },
+  { id: 'programa',     label: 'Programación',  Icon: Calendar },
+  { id: 'dresscode',    label: 'Codigo de Vestimenta',Icon: Shirt },
   { id: 'sobres',       label: 'Sobres',    Icon: Mail },
   { id: 'confirmacion', label: 'Confirmar', Icon: Star },
 ]
@@ -185,8 +185,8 @@ export default function Navbar() {
           <p style={{
             fontFamily: "'Cormorant Garamond', serif",
             fontStyle: 'italic',
-            color: 'rgba(255,255,255,0.25)',
-            fontSize: '0.75rem',
+            color: 'rgb(255, 255, 255)',
+            fontSize: '1.50rem',
           }}>
             Bienvenidos a la Fiesta de Sofia!
           </p>

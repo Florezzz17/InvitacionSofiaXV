@@ -21,8 +21,8 @@ export default function Confirmacion() {
   const [particles, setParticles] = useState([])
 
   const handleConfirmar = () => {
-    // Crear 60 estrellas en posiciones aleatorias
-   const newParticles = Array.from({ length: 200 }, (_, i) => ({
+    // Lanzar animación de estrellas
+    const newParticles = Array.from({ length: 150 }, (_, i) => ({
       id: i,
       left: `${Math.random() * 100}vw`,
       top: `${Math.random() * -20}vh`,
@@ -32,9 +32,17 @@ export default function Confirmacion() {
     }))
     setParticles(newParticles)
     setConfirmado(true)
-
-    // Limpiar partículas después de la animación
     setTimeout(() => setParticles([]), 4000)
+
+    // Redirigir a WhatsApp después de 1.5 segundos
+    // 👇 Cambia el número por el tuyo (formato internacional sin + ni espacios)
+    const numero = '573184153751'
+    const mensaje = encodeURIComponent(
+      '¡Hola! Confirmo mi asistencia y la de las demás personas de mi invitación a los XV años de Sofía Florez Avendaño el 16 de Diciembre de 2026. ¡Nos vemos pronto! 🌟'
+    )
+    setTimeout(() => {
+      window.open(`https://wa.me/${numero}?text=${mensaje}`, '_blank')
+    }, 1500)
   }
 
   const handleReset = () => {
