@@ -51,6 +51,9 @@ export default function Confirmacion() {
 }, 1500)
   }
 
+
+  //sasdasdasdadasdasda
+
   const handleReset = () => {
     setConfirmado(false)
     setParticles([])
