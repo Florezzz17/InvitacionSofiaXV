@@ -114,7 +114,7 @@ export default function Confirmacion() {
               fontFamily: "'Cinzel Decorative', cursive",
               color: '#ffffff',
               fontSize: 'clamp(1.6rem, 4vw, 2.5rem)',
-              textShadow: '0 0 40px rgba(245,230,66,0.3)',
+              textShadow: '0 0 40px rgb(245, 230, 66)',
               marginBottom: '1rem',
               lineHeight: 1.2,
             }}>
