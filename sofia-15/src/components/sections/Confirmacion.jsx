@@ -132,7 +132,7 @@ export default function Confirmacion() {
 
             <p style={{
               fontFamily: "'Cormorant Garamond', serif",
-              color: 'rgba(255,255,255,0.7)',
+              color: 'rgb(255, 255, 255)',
               fontSize: 'clamp(1rem, 2.5vw, 1.15rem)',
               lineHeight: 1.8,
               marginBottom: '2.5rem',
