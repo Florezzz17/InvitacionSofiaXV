@@ -38,7 +38,7 @@ export default function Confirmacion() {
     // 👇 Cambia el número por el tuyo (formato internacional sin + ni espacios)
     const numero = '573184153751'
     const mensaje = encodeURIComponent(
-      '¡Hola! Confirmo mi asistencia y la de las demás personas de mi invitación a los XV años de Sofía Florez Avendaño el 16 de Diciembre de 2026. ¡Nos vemos pronto! 🌟'
+      '¡Hola! Confirmo mi asistencia y la de mis acompañantes a los XV años de Sofía Florez Avendaño el 16 de Diciembre de 2026. ¡Nos vemos pronto! 🌟'
     )
     setTimeout(() => {
       window.open(`https://wa.me/${numero}?text=${mensaje}`, '_blank')
