@@ -41,8 +41,14 @@ export default function Confirmacion() {
       '¡Hola! Confirmo mi asistencia y la de mis acompañantes a los XV años de Sofía el 19 de Diciembre de 2026. ¡Nos vemos pronto! 🌟'
     )
     setTimeout(() => {
-      window.open(`https://wa.me/${numero}?text=${mensaje}`, '_blank')
-    }, 1500)
+  const link = document.createElement('a')
+  link.href = `https://wa.me/${numero}?text=${mensaje}`
+  link.target = '_blank'
+  link.rel = 'noopener noreferrer'
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
+}, 1500)
   }
 
   const handleReset = () => {
