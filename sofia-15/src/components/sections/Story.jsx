@@ -1,4 +1,5 @@
 // src/components/sections/Story.jsx
+import { useScrollReveal } from '../../hooks/useScrollReveal'
 import foto1 from '../../assets/photos/foto1.jpg'
 import foto2 from '../../assets/photos/foto2.jpg'
 import foto3 from '../../assets/photos/foto3.jpg'
@@ -82,8 +83,12 @@ function GoldenFrame({ src, caption, index }) {
 }
 
 export default function Story() {
+  const { ref, visible } = useScrollReveal()
   return (
-    <section id="story" style={{
+    <section ref={ref} id="story" style={{
+      opacity: visible ? 1 : 0,
+      transform: visible ? 'translateY(0)' : 'translateY(28px)',
+      transition: 'opacity 0.8s ease, transform 0.8s ease',
       minHeight: '100vh',
       display: 'flex',
       flexDirection: 'column',
@@ -96,7 +101,7 @@ export default function Story() {
         <p style={{
           fontFamily: "'Cormorant Garamond', serif",
           color: 'rgb(245, 230, 66)',
-          fontSize: 'clamp(1.8rem, 2vw, 0.9rem)',
+          fontSize: 'clamp(0.8rem, 2vw, 0.9rem)',
           letterSpacing: '0.45em',
           textTransform: 'uppercase',
           marginBottom: '0.95rem',
@@ -156,8 +161,8 @@ export default function Story() {
       {/* Hint de scroll */}
       <p style={{
         fontFamily: "'Cormorant Garamond', serif",
-        color: 'rgb(255, 255, 255)',
-        fontSize: '1.75rem',
+        color: 'rgba(255,255,255,0.5)',
+        fontSize: '0.75rem',
         letterSpacing: '0.25em',
         textTransform: 'uppercase',
         marginTop: '1rem',

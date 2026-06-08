@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Home, BookOpen, MapPin, Calendar, Mail, Shirt, Star, X, Menu } from 'lucide-react'
 
 const links = [
@@ -13,6 +13,21 @@ const links = [
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
+  const [activeId, setActiveId] = useState('hero')
+
+  useEffect(() => {
+    const sections = links.map(l => document.getElementById(l.id)).filter(Boolean)
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) setActiveId(entry.target.id)
+        })
+      },
+      { threshold: 0.35 }
+    )
+    sections.forEach(s => observer.observe(s))
+    return () => observer.disconnect()
+  }, [])
 
   const scrollTo = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
@@ -143,12 +158,12 @@ export default function Navbar() {
               display: 'flex',
               alignItems: 'center',
               gap: '1rem',
-              background: 'none',
-              border: '1px solid transparent',
+              background: id === activeId ? 'rgba(245,230,66,0.08)' : 'none',
+              border: id === activeId ? '1px solid rgba(245,230,66,0.2)' : '1px solid transparent',
               borderRadius: '12px',
               padding: '0.85rem 1.25rem',
               cursor: 'pointer',
-              color: 'rgba(255,255,255,0.75)',
+              color: id === activeId ? '#f5e642' : 'rgba(255,255,255,0.75)',
               transition: 'all 0.2s',
               textAlign: 'left',
               width: '100%',
@@ -159,9 +174,9 @@ export default function Navbar() {
               e.currentTarget.style.borderColor = 'rgba(245,230,66,0.2)'
             }}
             onMouseLeave={e => {
-              e.currentTarget.style.color = 'rgba(255,255,255,0.75)'
-              e.currentTarget.style.background = 'none'
-              e.currentTarget.style.borderColor = 'transparent'
+              e.currentTarget.style.color = id === activeId ? '#f5e642' : 'rgba(255,255,255,0.75)'
+              e.currentTarget.style.background = id === activeId ? 'rgba(245,230,66,0.08)' : 'none'
+              e.currentTarget.style.borderColor = id === activeId ? 'rgba(245,230,66,0.2)' : 'transparent'
             }}
           >
             <Icon size={20} />
@@ -185,10 +200,11 @@ export default function Navbar() {
           <p style={{
             fontFamily: "'Cormorant Garamond', serif",
             fontStyle: 'italic',
-            color: 'rgb(255, 255, 255)',
-            fontSize: '1.50rem',
+            color: 'rgba(255,255,255,0.45)',
+            fontSize: '0.8rem',
+            letterSpacing: '0.1em',
           }}>
-            Bienvenidos a la Fiesta de Sofia!
+            Bienvenidos a la fiesta de Sofía
           </p>
         </div>
 

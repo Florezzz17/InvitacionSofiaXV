@@ -1,5 +1,6 @@
 // src/components/sections/Hero.jsx
 import CountdownTimer from '../ui/CountdownTimer'
+import { MapPin } from 'lucide-react'
 
 export default function Hero() {
   return (
@@ -76,7 +77,7 @@ export default function Hero() {
         <p style={{
           fontFamily: "'Cormorant Garamond', serif",
           color: 'rgb(255, 255, 255)',
-          fontSize: 'clamp(1.90rem, 1.8vw, 1.15rem)',
+          fontSize: 'clamp(0.9rem, 1.8vw, 1.15rem)',
           letterSpacing: '0.12em',
           marginBottom: '2rem',
         }}>
@@ -89,10 +90,15 @@ export default function Hero() {
           fontFamily: "'Cormorant Garamond', serif",
           fontStyle: 'italic',
           color: 'rgb(255, 255, 255)',
-          fontSize: 'clamp(1.5rem, 2vw, 0.9rem)',
+          fontSize: 'clamp(0.85rem, 2vw, 1rem)',
           marginTop: '2rem',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '0.4rem',
         }}>
-          📍 Finca 8, Vda. La Mata · Autopista Piedecuesta, Floridablanca
+          <MapPin size={14} color="rgba(245,230,66,0.7)" />
+          Finca 8, Vda. La Mata · Autopista Piedecuesta, Floridablanca
         </p>
 
         <div style={{ marginTop: '2.5rem', animation: 'bounce 2s infinite' }}>

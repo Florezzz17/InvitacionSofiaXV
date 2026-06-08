@@ -1,9 +1,14 @@
 // src/components/sections/LluviaDeSobres.jsx
 import { Mail, Heart } from 'lucide-react'
+import { useScrollReveal } from '../../hooks/useScrollReveal'
 
 export default function LluviaDeSobres() {
+  const { ref, visible } = useScrollReveal()
   return (
-    <section id="sobres" style={{
+    <section ref={ref} id="sobres" style={{
+      opacity: visible ? 1 : 0,
+      transform: visible ? 'translateY(0)' : 'translateY(28px)',
+      transition: 'opacity 0.8s ease, transform 0.8s ease',
       minHeight: '60vh',
       display: 'flex',
       flexDirection: 'column',
@@ -72,7 +77,7 @@ export default function LluviaDeSobres() {
         <p style={{
           fontFamily: "'Cormorant Garamond', serif",
           color: 'rgba(255,255,255,0.8)',
-          fontSize: 'clamp(1.30rem, 2.5vw, 1.2rem)',
+          fontSize: 'clamp(1rem, 2.5vw, 1.2rem)',
           lineHeight: 1.8,
           marginBottom: '1.5rem',
         }}>
@@ -96,7 +101,7 @@ export default function LluviaDeSobres() {
             fontFamily: "'Cormorant Garamond', serif",
             fontStyle: 'italic',
             color: 'rgb(255, 255, 255)',
-            fontSize: 'clamp(1.45rem, 2vw, 0.95rem)',
+            fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
             textAlign: 'left',
             lineHeight: 1.6,
             margin: 0,

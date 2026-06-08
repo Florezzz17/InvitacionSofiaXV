@@ -1,5 +1,6 @@
 // src/components/sections/DressCode.jsx
 import { Sparkles } from 'lucide-react'
+import { useScrollReveal } from '../../hooks/useScrollReveal'
 
 const coloresPermitidos = [
   { color: '#1a1a2e', nombre: 'Negro' },
@@ -13,8 +14,12 @@ const coloresPermitidos = [
 ]
 
 export default function DressCode() {
+  const { ref, visible } = useScrollReveal()
   return (
-    <section id="dresscode" style={{
+    <section ref={ref} id="dresscode" style={{
+      opacity: visible ? 1 : 0,
+      transform: visible ? 'translateY(0)' : 'translateY(28px)',
+      transition: 'opacity 0.8s ease, transform 0.8s ease',
       minHeight: '100vh',
       display: 'flex',
       flexDirection: 'column',
@@ -80,7 +85,7 @@ export default function DressCode() {
           <p style={{
             fontFamily: "'Cormorant Garamond', serif",
             color: 'rgb(255, 255, 255)',
-            fontSize: 'clamp(1.5rem, 2.5vw, 1.15rem)',
+            fontSize: 'clamp(1rem, 2.5vw, 1.15rem)',
             lineHeight: 1.8,
           }}>
             Los invitamos a asistir con vestimenta <span style={{ color: '#f5e642', fontStyle: 'italic' }}>elegante y formal</span>.
@@ -134,7 +139,7 @@ export default function DressCode() {
               fontFamily: "'Cormorant Garamond', serif",
               fontStyle: 'italic',
               color: 'rgb(255, 255, 255)',
-              fontSize: 'clamp(1.3rem, 2vw, 1rem)',
+              fontSize: 'clamp(0.9rem, 2vw, 1rem)',
               lineHeight: 1.6,
             }}>
               Este color está reservado exclusivamente para <strong style={{ color: 'rgba(255,255,255,0.9)' }}>Sofía</strong>,

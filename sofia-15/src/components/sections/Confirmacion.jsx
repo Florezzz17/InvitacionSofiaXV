@@ -1,6 +1,7 @@
 // src/components/sections/Confirmacion.jsx
 import { useState } from 'react'
 import { Star } from 'lucide-react'
+import { useScrollReveal } from '../../hooks/useScrollReveal'
 
 function StarParticle({ style }) {
   return (
@@ -17,6 +18,7 @@ function StarParticle({ style }) {
 }
 
 export default function Confirmacion() {
+  const { ref, visible } = useScrollReveal()
   const [confirmado, setConfirmado] = useState(false)
   const [particles, setParticles] = useState([])
 
@@ -43,16 +45,17 @@ export default function Confirmacion() {
 }
 
 
-  //sasdasdasdadasdasda
-
   const handleReset = () => {
     setConfirmado(false)
     setParticles([])
   }
 
   return (
-    <section id="confirmacion" style={{
+    <section ref={ref} id="confirmacion" style={{
       minHeight: '100vh',
+      opacity: visible ? 1 : 0,
+      transform: visible ? 'translateY(0)' : 'translateY(28px)',
+      transition: 'opacity 0.8s ease, transform 0.8s ease',
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',

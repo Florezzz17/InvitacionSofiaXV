@@ -1,4 +1,5 @@
 import { Music, Star, Heart, Sparkles } from 'lucide-react'
+import { useScrollReveal } from '../../hooks/useScrollReveal'
 
 const eventos = [
   {
@@ -32,8 +33,12 @@ const eventos = [
 ]
 
 export default function Programa() {
+  const { ref, visible } = useScrollReveal()
   return (
-    <section id="programa" style={{
+    <section ref={ref} id="programa" style={{
+      opacity: visible ? 1 : 0,
+      transform: visible ? 'translateY(0)' : 'translateY(28px)',
+      transition: 'opacity 0.8s ease, transform 0.8s ease',
       minHeight: '100vh',
       display: 'flex',
       flexDirection: 'column',
@@ -79,13 +84,13 @@ export default function Programa() {
         {eventos.map((evento, i) => {
           const isLeft = i % 2 === 0
           return (
-            <div key={i} style={{
+            <div key={i} className={`programa-item programa-item-${isLeft ? 'left' : 'right'}`} style={{
               display: 'flex',
               justifyContent: isLeft ? 'flex-start' : 'flex-end',
               paddingBottom: '2rem',
               position: 'relative',
             }}>
-              <div style={{
+              <div className="programa-dot" style={{
                 position: 'absolute',
                 left: '50%',
                 top: '20px',
@@ -97,7 +102,7 @@ export default function Programa() {
                 boxShadow: `0 0 12px ${evento.color}`,
                 zIndex: 1,
               }} />
-              <div style={{
+              <div className="programa-card" style={{
                 width: '44%',
                 background: 'rgba(5, 11, 31, 0.65)',
                 backdropFilter: 'blur(14px)',
@@ -163,6 +168,14 @@ export default function Programa() {
           marginTop: '1rem',
         }}>— Con amor, tu familia —</p>
       </div>
+
+      <style>{`
+        @media (max-width: 560px) {
+          .programa-item { justify-content: center !important; }
+          .programa-card  { width: 80% !important; }
+          .programa-dot   { left: 50% !important; transform: translateX(-50%) !important; }
+        }
+      `}</style>
     </section>
   )
 }

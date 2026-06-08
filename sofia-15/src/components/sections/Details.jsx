@@ -1,15 +1,21 @@
 // src/components/sections/Details.jsx
 import { MapPin, Clock, Navigation } from 'lucide-react'
+import { useScrollReveal } from '../../hooks/useScrollReveal'
 
 export default function Details() {
+  const { ref, visible } = useScrollReveal()
   const googleMapsUrl =
     'https://www.google.com/maps/search/FINCA+8+VDA.+LA+MATA+-+AUTOPISTA+PIEDECUESTA+-+FLORIDABLANCA+,+Piedecuesta,+Colombia,+Piedecuesta,+681011/@7.0130127,-73.0606502,17z/data=!3m1!4b1?entry=ttu&g_ep=EgoyMDI2MDMwNC4xIKXMDSoASAFQAw%3D%3D'
 
   return (
     <section
+      ref={ref}
       id="details"
       style={{
         minHeight: '100vh',
+        opacity: visible ? 1 : 0,
+        transform: visible ? 'translateY(0)' : 'translateY(28px)',
+        transition: 'opacity 0.8s ease, transform 0.8s ease',
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
@@ -176,7 +182,7 @@ export default function Details() {
             height="100%"
             frameBorder="0"
             style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg)' }}
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d31742.87!2d-73.1!3d7.06!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8e68003f269e4f3d%3A0x8e68003f269e4f3d!2sFloridablanca%2C%20Santander!5e0!3m2!1ses!2sco!4v1"
+            src="https://maps.google.com/maps?q=7.0130127,-73.0606502&z=17&output=embed"
             allowFullScreen
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
