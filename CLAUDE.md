@@ -109,8 +109,41 @@ npm run lint      # ESLint
 - La sección `Confirmacion` dispara una animación de partículas de estrellas al confirmar
 - `useDeviceOrientation` usa el giroscopio del móvil para mover las estrellas 3D en paralaje
 - El CountdownTimer se actualiza cada segundo con `setInterval`
+- `useScrollReveal` usa `IntersectionObserver` para disparar animaciones de entrada al hacer scroll — se desconecta luego de la primera intersección (one-shot)
+- `StarryNight` usa un `ShaderMaterial` custom con uniforms `uTime`, `uHeight`, `uDpr` para parpadeo por estrella y tamaño correcto en cualquier pantalla
 
-## Historial de Cambios Recientes
+## Estrellas 3D (StarryNight.jsx)
 
-Según git log:
-- `cambios ios 3` / `cambios ios 2` / `Cambios wsp apple` / `Cambios en mensaje de wsp 4-5` — ajustes recientes al flujo de WhatsApp/RSVP y compatibilidad iOS
+El fondo usa un shader GLSL custom en lugar del `pointsMaterial` original:
+
+- **400 estrellas** en 3 niveles: 75% pequeñas, 18% medianas, 7% grandes/brillantes
+- **Parpadeo individual**: cada estrella tiene `aPhase` y `aSpeed` aleatorios → `sin(uTime * aSpeed + aPhase)`
+- **Tamaño correcto**: fórmula `projectionMatrix[1][1] * uHeight * 0.5 / -mvPosition.z * uDpr` (equivalente a `sizeAttenuation: true` de Three.js)
+- **Colores**: blanco, blanco cálido, amarillo, dorado, azul-blanco, azul pálido
+- **Forma**: círculo suave con halo (no punto cuadrado) via `smoothstep` en el fragment shader
+- **Blending**: `THREE.AdditiveBlending` — estrellas superpuestas suman su luz
+
+## Correcciones Aplicadas (sesión 2026-06-08)
+
+### Bugs visuales corregidos
+- 6 valores `clamp()` estaban invertidos (min > max) en `Hero.jsx`, `DressCode.jsx`, `LluviaDeSobres.jsx`
+- Mapa embebido en `Details.jsx` apuntaba a Floridablanca genérico → corregido a coordenadas `7.0130127, -73.0606502`
+- Comentario de debug `//sasdasdasdadasdasda` eliminado de `Confirmacion.jsx`
+
+### Mejoras de diseño
+- **Scroll reveal**: `useScrollReveal.js` — fade + slide de 28px al entrar cada sección en viewport
+- **Navbar activa**: `IntersectionObserver` resalta en dorado la sección visible actual
+- **Navbar footer**: texto corregido a `0.8rem`, color sutil, tilde en "Sofía"
+- **Hint galería**: `fontSize` de `1.75rem` → `0.75rem` sutil
+- **Programa mobile**: tarjetas centradas en pantallas < 560px via media query
+- **Hero ubicación**: emoji `📍` reemplazado por ícono `MapPin` de lucide-react
+
+## Historial de Commits
+
+| Hash | Descripción |
+|------|-------------|
+| `1dcaf5e` | Mejoras de diseño y correcciones visuales (sesión 2026-06-08) |
+| `273e7ee` | cambios ios 3 |
+| `4a940f5` | cambios ios 2 |
+| `966070f` | Cambios wsp apple |
+| `0879758` | Cambios en mensaje de wsp 5 |
