@@ -56,10 +56,8 @@ export default function DressCode() {
       }}>
 
         {/* Tarjeta principal: Formal */}
-        <div style={{
+        <div className="glass" style={{
           background: 'rgba(5, 11, 31, 0.6)',
-          backdropFilter: 'blur(18px)',
-          WebkitBackdropFilter: 'blur(18px)',
           border: '1px solid rgb(245, 230, 66)',
           borderRadius: '20px',
           padding: '2rem',
@@ -95,10 +93,8 @@ export default function DressCode() {
         </div>
 
         {/* Tarjeta: Color reservado */}
-        <div style={{
+        <div className="glass" style={{
           background: 'rgba(10, 20, 60, 0.7)',
-          backdropFilter: 'blur(18px)',
-          WebkitBackdropFilter: 'blur(18px)',
           border: '2px solid rgba(100, 140, 255, 0.4)',
           borderRadius: '20px',
           padding: '2rem',
@@ -150,10 +146,8 @@ export default function DressCode() {
         </div>
 
         {/* Colores sugeridos */}
-        <div style={{
+        <div className="glass" style={{
           background: 'rgba(5, 11, 31, 0.6)',
-          backdropFilter: 'blur(18px)',
-          WebkitBackdropFilter: 'blur(18px)',
           border: '1px solid rgb(245, 230, 66)',
           borderRadius: '20px',
           padding: '2rem',

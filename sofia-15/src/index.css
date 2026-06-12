@@ -171,6 +171,23 @@ body {
   will-change: transform;
 }
 
+/* ---------- Efecto de vidrio esmerilado (glassmorphism) ----------
+   En pantallas táctiles el radio baja a la mitad: visualmente idéntico
+   (la densidad de píxeles del celular lo compensa) pero cuesta ~50% menos
+   de GPU, que es lo que causaba tirones al hacer scroll en móvil */
+
+.glass {
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+@media (pointer: coarse) {
+  .glass {
+    backdrop-filter: blur(9px);
+    -webkit-backdrop-filter: blur(9px);
+  }
+}
+
 /* ---------- Botones ---------- */
 
 .btn-gold {

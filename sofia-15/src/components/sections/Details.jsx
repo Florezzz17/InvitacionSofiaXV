@@ -70,10 +70,9 @@ export default function Details() {
       >
         {/* Tarjeta de info */}
         <div
+          className="glass"
           style={{
             background: 'rgba(5, 11, 31, 0.6)',
-            backdropFilter: 'blur(16px)',
-            WebkitBackdropFilter: 'blur(16px)',
             border: '1px solid rgba(245,230,66,0.25)',
             borderRadius: '20px',
             padding: '2rem',
@@ -178,7 +177,6 @@ export default function Details() {
         <div
           style={{
             background: 'rgba(5, 11, 31, 0.6)',
-            backdropFilter: 'blur(16px)',
             border: '1px solid rgba(245,230,66,0.25)',
             borderRadius: '20px',
             overflow: 'hidden',

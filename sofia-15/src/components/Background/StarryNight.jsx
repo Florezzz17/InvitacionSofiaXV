@@ -178,7 +178,7 @@ export default function StarryNight() {
       <Canvas
         style={{ position: 'absolute', inset: 0 }}
         camera={{ position: [0, 0, 5], fov: 75 }}
-        dpr={[1, 2]}
+        dpr={[1, 1.5]}
       >
         <AnimatedStars orientationRef={orientationRef} />
       </Canvas>

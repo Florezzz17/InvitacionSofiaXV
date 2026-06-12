@@ -15,10 +15,8 @@ export default function Hero() {
       justifyContent: 'center',
       padding: '6rem 2rem 2rem',
     }}>
-      <div className="hero-reveal" style={{
+      <div className="hero-reveal glass" style={{
         background: 'rgba(5, 11, 31, 0.5)',
-        backdropFilter: 'blur(18px)',
-        WebkitBackdropFilter: 'blur(18px)',
         border: '1px solid rgba(245,230,66,0.25)',
         borderRadius: '24px',
         padding: 'clamp(2rem, 5vw, 4rem) clamp(1.5rem, 5vw, 4rem)',

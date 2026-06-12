@@ -82,10 +82,8 @@ export default function Confirmacion() {
       ))}</div>}
 
       {/* Tarjeta */}
-      <div style={{
+      <div className="glass" style={{
         background: 'rgba(5, 11, 31, 0.6)',
-        backdropFilter: 'blur(18px)',
-        WebkitBackdropFilter: 'blur(18px)',
         border: '1px solid rgba(245,230,66,0.25)',
         borderRadius: '24px',
         padding: 'clamp(2rem, 5vw, 4rem) clamp(1.5rem, 5vw, 4rem)',

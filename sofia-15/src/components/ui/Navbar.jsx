@@ -46,7 +46,7 @@ export default function Navbar() {
   return (
     <>
       {/* Barra superior */}
-      <nav aria-label="Navegación principal" style={{
+      <nav className="glass" aria-label="Navegación principal" style={{
         position: 'fixed',
         top: 0, left: 0, right: 0,
         zIndex: 100,
@@ -56,8 +56,6 @@ export default function Navbar() {
         gap: '1rem',
         padding: '0.75rem 1.5rem',
         background: 'rgba(5, 11, 31, 0.75)',
-        backdropFilter: 'blur(12px)',
-        WebkitBackdropFilter: 'blur(12px)',
         borderBottom: '1px solid rgba(245,230,66,0.15)',
       }}>
 
@@ -120,7 +118,7 @@ export default function Navbar() {
       )}
 
       {/* Menú desplegable */}
-      <div aria-hidden={!open} style={{
+      <div className="glass" aria-hidden={!open} style={{
         position: 'fixed',
         top: 0,
         right: 0,
@@ -128,8 +126,6 @@ export default function Navbar() {
         width: 'clamp(220px, 70vw, 300px)',
         zIndex: 99,
         background: 'rgba(5, 11, 31, 0.97)',
-        backdropFilter: 'blur(20px)',
-        WebkitBackdropFilter: 'blur(20px)',
         borderLeft: '1px solid rgba(245,230,66,0.2)',
         padding: '5rem 1.5rem 2rem',
         display: 'flex',

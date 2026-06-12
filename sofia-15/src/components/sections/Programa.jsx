@@ -102,11 +102,9 @@ export default function Programa() {
                 boxShadow: `0 0 12px ${evento.color}`,
                 zIndex: 1,
               }} />
-              <div className="programa-card" style={{
+              <div className="programa-card glass" style={{
                 width: '44%',
                 background: 'rgba(5, 11, 31, 0.65)',
-                backdropFilter: 'blur(14px)',
-                WebkitBackdropFilter: 'blur(14px)',
                 border: `1px solid ${evento.color}33`,
                 borderRadius: '16px',
                 padding: '1.25rem 1.5rem',
@@ -139,12 +137,11 @@ export default function Programa() {
         })}
       </div>
 
-      <div style={{
+      <div className="glass" style={{
         marginTop: '3rem',
         textAlign: 'center',
         padding: '2rem',
         background: 'rgba(5,11,31,0.5)',
-        backdropFilter: 'blur(12px)',
         border: '1px solid rgba(245,230,66,0.2)',
         borderRadius: '20px',
         maxWidth: '500px',

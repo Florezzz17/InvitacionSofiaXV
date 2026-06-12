@@ -71,12 +71,10 @@ export default function Indicaciones() {
         width: '100%',
       }}>
         {items.map((item) => (
-          <div key={item.titulo} style={{
+          <div key={item.titulo} className="glass" style={{
             flex: '1 1 300px',
             maxWidth: '360px',
             background: 'rgba(5, 11, 31, 0.6)',
-            backdropFilter: 'blur(16px)',
-            WebkitBackdropFilter: 'blur(16px)',
             border: '1px solid rgba(245,230,66,0.25)',
             borderRadius: '20px',
             padding: '1.75rem',
