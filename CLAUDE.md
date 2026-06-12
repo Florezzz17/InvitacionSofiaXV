@@ -188,6 +188,14 @@ El fondo usa un shader GLSL custom en lugar del `pointsMaterial` original:
 - **Textos a confirmar por el usuario**: fecha límite (1 de diciembre de 2026), disponibilidad de parqueadero, hashtag #LaNocheDeSofia
 - **Pendientes decididos**: sección padres/padrinos (descartada por ahora), invitación personalizada por URL (en análisis)
 
+## Invitaciones Personalizadas (sesión 2026-06-12, parte 3)
+
+- **`src/utils/guest.js`** lee `?i=<nombre>` y `&c=<cupos>` de la URL una sola vez al cargar (exporta `GUEST`); nombre limitado a 60 caracteres, cupos válidos 1–20
+- **Welcome**: con nombre muestra "— Esta invitación es para — / {nombre}" y "✦ N lugares reservados ✦"; sin parámetros, versión genérica intacta
+- **Confirmacion**: muestra el nombre del invitado y el mensaje de WhatsApp dice "Confirmo la asistencia de {nombre} (N personas)…"
+- **`generador-links.html`** (raíz del repo, NO se publica): herramienta local — pegar lista "Nombre, cupos" (uno por línea) → genera todos los links con encoding correcto y botones de copiar
+- Pendiente: el usuario pasará la lista de invitados en una próxima sesión
+
 ## Historial de Commits
 
 | Hash | Descripción |

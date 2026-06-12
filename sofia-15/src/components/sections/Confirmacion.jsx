@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import { Star } from 'lucide-react'
 import { useScrollReveal } from '../../hooks/useScrollReveal'
+import { GUEST } from '../../utils/guest'
 
 function StarParticle({ style }) {
   return (
@@ -26,8 +27,14 @@ export default function Confirmacion() {
     // 1. Abrir WhatsApp INMEDIATAMENTE (mismo hilo del click, evita el
     // bloqueo de popups de Safari)
     const numero = '573184153751'
+    // Mensaje personalizado si la invitación trae nombre (?i=...) y cupos (&c=...)
+    const cupos = GUEST.cupos
+      ? ` (${GUEST.cupos} ${GUEST.cupos === 1 ? 'persona' : 'personas'})`
+      : ''
     const mensaje = encodeURIComponent(
-      '¡Hola! Confirmo mi asistencia y la de mis acompañantes a los XV años de Sofía el 19 de Diciembre de 2026. ¡Nos vemos pronto! 🌟'
+      GUEST.name
+        ? `¡Hola! Confirmo la asistencia de ${GUEST.name}${cupos} a los XV años de Sofía el 19 de Diciembre de 2026. ¡Nos vemos pronto! 🌟`
+        : '¡Hola! Confirmo mi asistencia y la de mis acompañantes a los XV años de Sofía el 19 de Diciembre de 2026. ¡Nos vemos pronto! 🌟'
     )
     window.open(`https://wa.me/${numero}?text=${mensaje}`, '_blank')
 
@@ -112,6 +119,18 @@ export default function Confirmacion() {
               textTransform: 'uppercase',
               marginBottom: '0.75rem',
             }}>— Confirma tu asistencia —</p>
+
+            {GUEST.name && (
+              <p style={{
+                fontFamily: "'Cormorant Garamond', serif",
+                fontStyle: 'italic',
+                color: '#f5e642',
+                fontSize: 'clamp(1.05rem, 3vw, 1.3rem)',
+                marginBottom: '0.75rem',
+              }}>
+                {GUEST.name}
+              </p>
+            )}
 
             <h2 style={{
               fontFamily: "'Cinzel Decorative', cursive",

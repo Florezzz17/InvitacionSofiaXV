@@ -3,6 +3,7 @@
 // "Abrir invitación". Ese primer toque también habilita el giroscopio en iOS
 // y permite iniciar la música de fondo (los navegadores exigen un gesto).
 import vanGoghBg from '../../assets/starry-night.jpg'
+import { GUEST } from '../../utils/guest'
 
 export default function Welcome({ closed, onOpen }) {
   return (
@@ -33,10 +34,24 @@ export default function Welcome({ closed, onOpen }) {
           fontSize: 'clamp(0.75rem, 2vw, 0.9rem)',
           letterSpacing: '0.45em',
           textTransform: 'uppercase',
-          marginBottom: '1.25rem',
+          marginBottom: GUEST.name ? '0.75rem' : '1.25rem',
         }}>
-          — Tienes una invitación —
+          {GUEST.name ? '— Esta invitación es para —' : '— Tienes una invitación —'}
         </p>
+
+        {GUEST.name && (
+          <p style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontStyle: 'italic',
+            color: '#f5e642',
+            fontSize: 'clamp(1.2rem, 4.5vw, 1.7rem)',
+            lineHeight: 1.3,
+            marginBottom: '1.25rem',
+            textShadow: '0 0 30px rgba(245, 230, 66, 0.4)',
+          }}>
+            {GUEST.name}
+          </p>
+        )}
 
         <h1 style={{
           fontFamily: "'Cinzel Decorative', cursive",
@@ -54,10 +69,22 @@ export default function Welcome({ closed, onOpen }) {
           fontStyle: 'italic',
           color: '#f5e642',
           fontSize: 'clamp(1rem, 3vw, 1.25rem)',
-          marginBottom: '2rem',
+          marginBottom: GUEST.cupos ? '0.75rem' : '2rem',
         }}>
           19 de Diciembre · 2026
         </p>
+
+        {GUEST.cupos && (
+          <p style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            color: 'rgba(255,255,255,0.75)',
+            fontSize: 'clamp(0.85rem, 2.2vw, 0.95rem)',
+            letterSpacing: '0.15em',
+            marginBottom: '2rem',
+          }}>
+            ✦ {GUEST.cupos} {GUEST.cupos === 1 ? 'lugar reservado' : 'lugares reservados'} ✦
+          </p>
+        )}
 
         <div style={{
           width: '70px', height: '1px',
