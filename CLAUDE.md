@@ -68,7 +68,7 @@ npm run lint      # ESLint
 
 - **Rama de deploy:** `main`
 - **Workflow:** `.github/workflows/deploy.yml` — se dispara en cada push a `main`
-- **URL pública:** `https://florezz17.github.io/InvitacionSofiaXV/`
+- **URL pública:** `https://florezzz17.github.io/InvitacionSofiaXV/` (usuario de GitHub: `Florezzz17`, con tres "z")
 - **Base path Vite:** `/InvitacionSofiaXV/`
 
 ## Datos del Evento
