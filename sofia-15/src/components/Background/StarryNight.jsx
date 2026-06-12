@@ -145,9 +145,9 @@ function AnimatedStars({ orientationRef }) {
 
 // Estrellas fugaces ocasionales (CSS puro, muy baratas de animar)
 const SHOOTING_STARS = [
-  { top: '12%', left: '78%', duration: '13s', delay: '3s' },
-  { top: '6%',  left: '45%', duration: '17s', delay: '9s' },
-  { top: '22%', left: '92%', duration: '21s', delay: '15s' },
+  { top: '12%', left: '78%', duration: '9s',  delay: '2s' },
+  { top: '6%',  left: '45%', duration: '12s', delay: '6s' },
+  { top: '22%', left: '92%', duration: '15s', delay: '11s' },
 ]
 
 export default function StarryNight() {
