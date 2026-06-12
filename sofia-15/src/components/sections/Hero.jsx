@@ -3,6 +3,10 @@ import CountdownTimer from '../ui/CountdownTimer'
 import { MapPin } from 'lucide-react'
 
 export default function Hero() {
+  const scrollToStory = () => {
+    document.getElementById('story')?.scrollIntoView({ behavior: 'smooth' })
+  }
+
   return (
     <section id="hero" style={{
       minHeight: '100vh',
@@ -11,7 +15,7 @@ export default function Hero() {
       justifyContent: 'center',
       padding: '6rem 2rem 2rem',
     }}>
-      <div style={{
+      <div className="hero-reveal" style={{
         background: 'rgba(5, 11, 31, 0.5)',
         backdropFilter: 'blur(18px)',
         WebkitBackdropFilter: 'blur(18px)',
@@ -24,7 +28,8 @@ export default function Hero() {
         boxShadow: '0 8px 60px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.08)',
       }}>
 
-        <p style={{
+        <p className="hero-reveal" style={{
+          '--reveal-delay': '0.15s',
           fontFamily: "'Cormorant Garamond', serif",
           color: 'rgba(245,230,66,0.8)',
           fontSize: 'clamp(0.8rem, 2vw, 0.95rem)',
@@ -35,7 +40,8 @@ export default function Hero() {
           — La Noche Estrellada de —
         </p>
 
-        <h1 style={{
+        <h1 className="hero-reveal" style={{
+          '--reveal-delay': '0.3s',
           fontFamily: "'Cinzel Decorative', cursive",
           color: '#ffffff',
           fontSize: 'clamp(2.2rem, 7vw, 4.5rem)',
@@ -47,7 +53,8 @@ export default function Hero() {
           Sofía
         </h1>
 
-        <h2 style={{
+        <h2 className="hero-reveal" style={{
+          '--reveal-delay': '0.45s',
           fontFamily: "'Cinzel Decorative', cursive",
           color: 'rgba(255,255,255,0.8)',
           fontSize: 'clamp(0.95rem, 2.8vw, 1.5rem)',
@@ -58,7 +65,8 @@ export default function Hero() {
           Florez Avendaño
         </h2>
 
-        <p style={{
+        <p className="hero-reveal" style={{
+          '--reveal-delay': '0.55s',
           fontFamily: "'Cormorant Garamond', serif",
           fontStyle: 'italic',
           color: '#f5e642',
@@ -68,13 +76,15 @@ export default function Hero() {
           Sus XV Años
         </p>
 
-        <div style={{
+        <div className="hero-reveal" style={{
+          '--reveal-delay': '0.65s',
           width: '80px', height: '1px',
           background: 'linear-gradient(90deg, transparent, rgb(245, 230, 66), transparent)',
           margin: '0 auto 2rem',
         }} />
 
-        <p style={{
+        <p className="hero-reveal" style={{
+          '--reveal-delay': '0.75s',
           fontFamily: "'Cormorant Garamond', serif",
           color: 'rgb(255, 255, 255)',
           fontSize: 'clamp(0.9rem, 1.8vw, 1.15rem)',
@@ -84,9 +94,12 @@ export default function Hero() {
           19 de Diciembre · 2026 · 6:00 PM
         </p>
 
-        <CountdownTimer />
+        <div className="hero-reveal" style={{ '--reveal-delay': '0.85s' }}>
+          <CountdownTimer />
+        </div>
 
-        <p style={{
+        <p className="hero-reveal" style={{
+          '--reveal-delay': '0.95s',
           fontFamily: "'Cormorant Garamond', serif",
           fontStyle: 'italic',
           color: 'rgb(255, 255, 255)',
@@ -101,25 +114,31 @@ export default function Hero() {
           Finca 8, Vda. La Mata · Autopista Piedecuesta, Floridablanca
         </p>
 
-        <div style={{ marginTop: '2.5rem', animation: 'bounce 2s infinite' }}>
-          <span style={{ color: 'rgba(245,230,66,0.5)', fontSize: '1.4rem' }}>↓</span>
-          <p style={{
-            fontFamily: "'Cormorant Garamond', serif",
-            color: 'rgb(255, 255, 255)',
-            fontSize: '0.7rem',
-            letterSpacing: '0.3em',
-            textTransform: 'uppercase',
-            marginTop: '0.3rem',
-          }}>Desliza para ver la magia</p>
-        </div>
+        <button
+          onClick={scrollToStory}
+          aria-label="Bajar a la siguiente sección"
+          className="hero-reveal"
+          style={{
+            '--reveal-delay': '1.1s',
+            background: 'none',
+            border: 'none',
+            cursor: 'pointer',
+            marginTop: '2.5rem',
+          }}
+        >
+          <div style={{ animation: 'bounce 2s infinite' }}>
+            <span style={{ color: 'rgba(245,230,66,0.5)', fontSize: '1.4rem' }}>↓</span>
+            <p style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              color: 'rgb(255, 255, 255)',
+              fontSize: '0.7rem',
+              letterSpacing: '0.3em',
+              textTransform: 'uppercase',
+              marginTop: '0.3rem',
+            }}>Desliza para ver la magia</p>
+          </div>
+        </button>
       </div>
-
-      <style>{`
-        @keyframes bounce {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(10px); }
-        }
-      `}</style>
     </section>
   )
 }

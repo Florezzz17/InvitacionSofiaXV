@@ -1,14 +1,15 @@
 import { useState, useEffect } from 'react'
-import { Home, BookOpen, MapPin, Calendar, Mail, Shirt, Star, X, Menu } from 'lucide-react'
+import { Home, BookOpen, MapPin, Calendar, Mail, Shirt, Star, Info, X, Menu } from 'lucide-react'
 
 const links = [
   { id: 'hero',         label: 'Inicio',      Icon: Home },
-  { id: 'story',        label: 'Historia',     Icon: BookOpen },
-  { id: 'details',      label: 'Detalles',   Icon: MapPin },
-  { id: 'programa',     label: 'Programación',  Icon: Calendar },
-  { id: 'dresscode',    label: 'Codigo de Vestimenta',Icon: Shirt },
-  { id: 'sobres',       label: 'Sobres',    Icon: Mail },
-  { id: 'confirmacion', label: 'Confirmar', Icon: Star },
+  { id: 'story',        label: 'Historia',    Icon: BookOpen },
+  { id: 'details',      label: 'Detalles',    Icon: MapPin },
+  { id: 'programa',     label: 'Programa',    Icon: Calendar },
+  { id: 'dresscode',    label: 'Vestimenta',  Icon: Shirt },
+  { id: 'sobres',       label: 'Sobres',      Icon: Mail },
+  { id: 'info',         label: 'Información', Icon: Info },
+  { id: 'confirmacion', label: 'Confirmar',   Icon: Star },
 ]
 
 export default function Navbar() {
@@ -29,6 +30,14 @@ export default function Navbar() {
     return () => observer.disconnect()
   }, [])
 
+  // Cerrar el menú con Escape
+  useEffect(() => {
+    if (!open) return
+    const onKey = (e) => { if (e.key === 'Escape') setOpen(false) }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [open])
+
   const scrollTo = (id) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
     setOpen(false)
@@ -37,13 +46,14 @@ export default function Navbar() {
   return (
     <>
       {/* Barra superior */}
-      <nav style={{
+      <nav aria-label="Navegación principal" style={{
         position: 'fixed',
         top: 0, left: 0, right: 0,
         zIndex: 100,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
+        gap: '1rem',
         padding: '0.75rem 1.5rem',
         background: 'rgba(5, 11, 31, 0.75)',
         backdropFilter: 'blur(12px)',
@@ -57,39 +67,42 @@ export default function Navbar() {
           color: '#f5e642',
           fontSize: 'clamp(0.7rem, 2vw, 0.9rem)',
           letterSpacing: '0.1em',
+          whiteSpace: 'nowrap',
         }}>
           ✨ XV Sofía
         </span>
 
-        {/* Botón hamburguesa */}
-      <button
-        onClick={() => setOpen(!open)}
-        style={{
-          background: 'rgba(245,230,66,0.1)',
-          border: '1px solid rgba(245,230,66,0.3)',
-          borderRadius: '8px',
-          padding: '0.4rem 0.9rem',
-          cursor: 'pointer',
-          color: '#f5e642',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: '0.5rem',
-          transition: 'all 0.2s',
-        }}
-        onMouseEnter={e => e.currentTarget.style.background = 'rgba(245,230,66,0.2)'}
-        onMouseLeave={e => e.currentTarget.style.background = 'rgba(245,230,66,0.1)'}
-      >
-        {open ? <X size={20} /> : <Menu size={20} />}
-        <span style={{
-          fontFamily: "'Cormorant Garamond', serif",
-          fontSize: '0.9rem',
-          letterSpacing: '0.15em',
-          textTransform: 'uppercase',
-        }}>
-          {open ? 'Cerrar' : 'Menú'}
-        </span>
-      </button>
+        {/* Links visibles en pantallas grandes */}
+        <div className="nav-desktop">
+          {links.map(({ id, label }) => (
+            <button
+              key={id}
+              className={`nav-link${id === activeId ? ' active' : ''}`}
+              aria-current={id === activeId ? 'true' : undefined}
+              onClick={() => scrollTo(id)}
+            >
+              {label}
+            </button>
+          ))}
+        </div>
+
+        {/* Botón hamburguesa (solo móvil / tablet) */}
+        <button
+          className="nav-burger"
+          onClick={() => setOpen(!open)}
+          aria-expanded={open}
+          aria-label={open ? 'Cerrar menú de navegación' : 'Abrir menú de navegación'}
+        >
+          {open ? <X size={20} /> : <Menu size={20} />}
+          <span style={{
+            fontFamily: "'Cormorant Garamond', serif",
+            fontSize: '0.9rem',
+            letterSpacing: '0.15em',
+            textTransform: 'uppercase',
+          }}>
+            {open ? 'Cerrar' : 'Menú'}
+          </span>
+        </button>
       </nav>
 
       {/* Overlay oscuro detrás del menú */}
@@ -107,7 +120,7 @@ export default function Navbar() {
       )}
 
       {/* Menú desplegable */}
-      <div style={{
+      <div aria-hidden={!open} style={{
         position: 'fixed',
         top: 0,
         right: 0,
@@ -123,7 +136,8 @@ export default function Navbar() {
         flexDirection: 'column',
         gap: '0.5rem',
         transform: open ? 'translateX(0)' : 'translateX(100%)',
-        transition: 'transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)',
+        visibility: open ? 'visible' : 'hidden',
+        transition: 'transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), visibility 0.35s',
         boxShadow: open ? '-8px 0 40px rgba(0,0,0,0.5)' : 'none',
       }}>
 
@@ -150,43 +164,16 @@ export default function Navbar() {
         </div>
 
         {/* Links */}
-        {links.map(({ id, label, Icon }) => (
+        {links.map((link) => (
           <button
-            key={id}
-            onClick={() => scrollTo(id)}
-            style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '1rem',
-              background: id === activeId ? 'rgba(245,230,66,0.08)' : 'none',
-              border: id === activeId ? '1px solid rgba(245,230,66,0.2)' : '1px solid transparent',
-              borderRadius: '12px',
-              padding: '0.85rem 1.25rem',
-              cursor: 'pointer',
-              color: id === activeId ? '#f5e642' : 'rgba(255,255,255,0.75)',
-              transition: 'all 0.2s',
-              textAlign: 'left',
-              width: '100%',
-            }}
-            onMouseEnter={e => {
-              e.currentTarget.style.color = '#f5e642'
-              e.currentTarget.style.background = 'rgba(245,230,66,0.08)'
-              e.currentTarget.style.borderColor = 'rgba(245,230,66,0.2)'
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.color = id === activeId ? '#f5e642' : 'rgba(255,255,255,0.75)'
-              e.currentTarget.style.background = id === activeId ? 'rgba(245,230,66,0.08)' : 'none'
-              e.currentTarget.style.borderColor = id === activeId ? 'rgba(245,230,66,0.2)' : 'transparent'
-            }}
+            key={link.id}
+            className={`menu-link${link.id === activeId ? ' active' : ''}`}
+            aria-current={link.id === activeId ? 'true' : undefined}
+            onClick={() => scrollTo(link.id)}
+            tabIndex={open ? 0 : -1}
           >
-            <Icon size={20} />
-            <span style={{
-              fontFamily: "'Cormorant Garamond', serif",
-              fontSize: '1.1rem',
-              letterSpacing: '0.1em',
-            }}>
-              {label}
-            </span>
+            <link.Icon size={20} />
+            <span>{link.label}</span>
           </button>
         ))}
 

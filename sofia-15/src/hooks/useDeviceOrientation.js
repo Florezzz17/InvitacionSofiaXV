@@ -2,54 +2,60 @@
 // Este hook captura los ángulos del giroscopio del celular.
 // beta  = inclinación adelante/atrás (-180 a 180)
 // gamma = inclinación izquierda/derecha (-90 a 90)
+//
+// Los ángulos se guardan en un ref (no en estado) porque llegan ~60 veces
+// por segundo y solo se leen dentro del loop de animación de Three.js —
+// usar estado provocaría 60 re-renders por segundo.
 
-import { useState, useEffect, useCallback } from 'react'
+import { useState, useEffect, useRef, useCallback } from 'react'
+
+// iOS 13+ es el único entorno donde DeviceOrientationEvent.requestPermission existe
+const needsExplicitPermission = () =>
+  typeof DeviceOrientationEvent !== 'undefined' &&
+  typeof DeviceOrientationEvent.requestPermission === 'function'
 
 export function useDeviceOrientation() {
-  const [orientation, setOrientation] = useState({ beta: 0, gamma: 0 })
-  const [permissionState, setPermissionState] = useState('idle') // idle | granted | denied
+  const orientationRef = useRef({ beta: 0, gamma: 0 })
+  // idle | granted | denied — Android/desktop no requieren permiso
+  const [permissionState, setPermissionState] = useState(() =>
+    needsExplicitPermission() ? 'idle' : 'granted'
+  )
 
   const requestPermission = useCallback(async () => {
     // iOS 13+ requiere pedir permiso explícitamente
-    if (typeof DeviceOrientationEvent !== 'undefined' &&
-        typeof DeviceOrientationEvent.requestPermission === 'function') {
+    if (needsExplicitPermission()) {
       try {
         const permission = await DeviceOrientationEvent.requestPermission()
-        if (permission === 'granted') {
-          setPermissionState('granted')
-        } else {
-          setPermissionState('denied')
-        }
-      } catch (e) {
+        setPermissionState(permission === 'granted' ? 'granted' : 'denied')
+      } catch {
         setPermissionState('denied')
       }
     } else {
-      // Android y desktop no necesitan permiso
       setPermissionState('granted')
     }
   }, [])
+
+  // iOS 13+: el permiso solo puede pedirse dentro de un gesto del usuario,
+  // así que lo solicitamos en el primer toque sobre la página.
+  useEffect(() => {
+    if (permissionState !== 'idle' || !needsExplicitPermission()) return
+
+    const onFirstTouch = () => { requestPermission() }
+    window.addEventListener('pointerdown', onFirstTouch, { once: true })
+    return () => window.removeEventListener('pointerdown', onFirstTouch)
+  }, [permissionState, requestPermission])
 
   useEffect(() => {
     if (permissionState !== 'granted') return
 
     const handleOrientation = (event) => {
-      setOrientation({
-        beta: event.beta ?? 0,   // adelante/atrás
-        gamma: event.gamma ?? 0, // izquierda/derecha
-      })
+      orientationRef.current.beta = event.beta ?? 0   // adelante/atrás
+      orientationRef.current.gamma = event.gamma ?? 0 // izquierda/derecha
     }
 
     window.addEventListener('deviceorientation', handleOrientation, true)
     return () => window.removeEventListener('deviceorientation', handleOrientation, true)
   }, [permissionState])
 
-  // Auto-solicitar en Android/desktop (no necesitan clic)
-  useEffect(() => {
-    if (typeof DeviceOrientationEvent === 'undefined') return
-    if (typeof DeviceOrientationEvent.requestPermission !== 'function') {
-      setPermissionState('granted')
-    }
-  }, [])
-
-  return { orientation, permissionState, requestPermission }
+  return { orientationRef, permissionState, requestPermission }
 }

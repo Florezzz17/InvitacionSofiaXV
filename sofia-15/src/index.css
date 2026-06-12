@@ -10,7 +10,324 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Evita que el navbar fijo tape el título al navegar a una sección */
+section[id] {
+  scroll-margin-top: 56px;
+}
+
 body {
   background: #050b1f;
   overflow-x: hidden;
+  color: #ffffff;
+}
+
+::selection {
+  background: rgba(245, 230, 66, 0.35);
+  color: #ffffff;
+}
+
+:focus-visible {
+  outline: 2px solid rgba(245, 230, 66, 0.7);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ---------- Keyframes globales (compartidos por todas las secciones) ---------- */
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(10px); }
+}
+
+@keyframes popIn {
+  0%   { transform: scale(0); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes starFall {
+  0%   { transform: translateY(0) rotate(0deg) scale(1); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg) scale(0.3); opacity: 0; }
+}
+
+@keyframes shootingStar {
+  0%   { opacity: 0; transform: translate3d(0, 0, 0) rotate(-35deg); }
+  2%   { opacity: 1; }
+  9%   { opacity: 0; transform: translate3d(-55vw, 38vh, 0) rotate(-35deg); }
+  100% { opacity: 0; transform: translate3d(-55vw, 38vh, 0) rotate(-35deg); }
+}
+
+/* ---------- Estrellas fugaces (fondo) ---------- */
+
+.shooting-star {
+  position: absolute;
+  width: clamp(90px, 14vw, 160px);
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(255, 255, 255, 0.95), rgba(245, 230, 66, 0.4), transparent);
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.7));
+  opacity: 0;
+  pointer-events: none;
+  animation: shootingStar var(--duration, 12s) linear infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+/* ---------- Animación de entrada del Hero ----------
+   Los elementos quedan ocultos hasta que el invitado abre la invitación
+   (App agrega la clase .app-opened al contenedor raíz) */
+
+.hero-reveal {
+  opacity: 0;
+}
+
+.app-opened .hero-reveal {
+  animation: fadeInUp 0.9s ease var(--reveal-delay, 0s) both;
+}
+
+/* ---------- Portada de apertura ("Toca para abrir") ---------- */
+
+.gate {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  transition: opacity 0.8s ease, visibility 0.8s;
+}
+
+.gate.closed {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* ---------- Botón flotante de música ---------- */
+
+.music-btn {
+  position: fixed;
+  bottom: 1.25rem;
+  right: 1.25rem;
+  z-index: 95;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(5, 11, 31, 0.7);
+  border: 1px solid rgba(245, 230, 66, 0.4);
+  color: #f5e642;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: background 0.2s, box-shadow 0.2s;
+  animation: fadeInUp 0.6s ease both;
+}
+
+.music-btn:hover,
+.music-btn:focus-visible {
+  background: rgba(245, 230, 66, 0.15);
+  box-shadow: 0 0 18px rgba(245, 230, 66, 0.25);
+}
+
+/* ---------- Ken Burns: zoom lentísimo del fondo Van Gogh ---------- */
+
+@keyframes kenburns {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.08); }
+}
+
+.bg-kenburns {
+  animation: kenburns 80s ease-in-out infinite;
+  will-change: transform;
+}
+
+/* ---------- Botones ---------- */
+
+.btn-gold {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background: linear-gradient(135deg, rgba(245, 230, 66, 0.2), rgba(245, 230, 66, 0.1));
+  border: 1px solid rgba(245, 230, 66, 0.5);
+  border-radius: 16px;
+  padding: 1rem 2.5rem;
+  cursor: pointer;
+  color: #f5e642;
+  font-family: 'Cinzel Decorative', cursive;
+  letter-spacing: 0.15em;
+  text-decoration: none;
+  transition: background 0.3s, box-shadow 0.3s, transform 0.3s;
+}
+
+.btn-gold:hover,
+.btn-gold:focus-visible {
+  background: linear-gradient(135deg, rgba(245, 230, 66, 0.35), rgba(245, 230, 66, 0.2));
+  box-shadow: 0 0 30px rgba(245, 230, 66, 0.3);
+  transform: translateY(-2px);
+}
+
+.btn-ghost {
+  background: none;
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 12px;
+  padding: 0.6rem 1.5rem;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.85);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.1em;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+
+.btn-ghost:hover,
+.btn-ghost:focus-visible {
+  color: #ffffff;
+  border-color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* ---------- Navbar ---------- */
+
+.nav-desktop {
+  display: none;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.nav-link {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.72);
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  padding: 0.4rem 0.7rem;
+  border-radius: 8px;
+  transition: color 0.2s, background 0.2s;
+}
+
+.nav-link:hover,
+.nav-link:focus-visible {
+  color: #f5e642;
+  background: rgba(245, 230, 66, 0.08);
+}
+
+.nav-link.active {
+  color: #f5e642;
+  background: rgba(245, 230, 66, 0.08);
+}
+
+.nav-burger {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: rgba(245, 230, 66, 0.1);
+  border: 1px solid rgba(245, 230, 66, 0.3);
+  border-radius: 8px;
+  padding: 0.4rem 0.9rem;
+  cursor: pointer;
+  color: #f5e642;
+  transition: background 0.2s;
+}
+
+.nav-burger:hover,
+.nav-burger:focus-visible {
+  background: rgba(245, 230, 66, 0.2);
+}
+
+@media (min-width: 920px) {
+  .nav-desktop { display: flex; }
+  .nav-burger  { display: none; }
+}
+
+.menu-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 12px;
+  padding: 0.85rem 1.25rem;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.75);
+  width: 100%;
+  text-align: left;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.1em;
+  transition: color 0.2s, background 0.2s, border-color 0.2s;
+}
+
+.menu-link:hover,
+.menu-link:focus-visible,
+.menu-link.active {
+  color: #f5e642;
+  background: rgba(245, 230, 66, 0.08);
+  border-color: rgba(245, 230, 66, 0.2);
+}
+
+/* ---------- Galería (Story) ---------- */
+
+.story-gallery {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: visible;
+  padding-bottom: 2rem;
+  cursor: grab;
+  scrollbar-width: none;
+  scroll-snap-type: x proximity;
+  -webkit-overflow-scrolling: touch;
+}
+
+.story-gallery::-webkit-scrollbar {
+  display: none;
+}
+
+.story-frame {
+  scroll-snap-align: center;
+}
+
+/* ---------- Paleta de colores (DressCode) ---------- */
+
+.color-swatch {
+  transition: transform 0.2s;
+}
+
+.color-swatch:hover {
+  transform: scale(1.15);
+}
+
+/* ---------- Accesibilidad: respetar movimiento reducido ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
 }

@@ -23,27 +23,27 @@ export default function Confirmacion() {
   const [particles, setParticles] = useState([])
 
   const handleConfirmar = () => {
-  // 1. Abrir WhatsApp INMEDIATAMENTE (mismo hilo del click)
-  const numero = '573184153751' // 👈 cambia por tu número
-  const mensaje = encodeURIComponent(
-    '¡Hola! Confirmo mi asistencia y la de mis acompañantes a los XV años de Sofía el 19 de Diciembre de 2026. ¡Nos vemos pronto! 🌟'
-  )
-  window.open(`https://wa.me/${numero}?text=${mensaje}`, '_blank')
+    // 1. Abrir WhatsApp INMEDIATAMENTE (mismo hilo del click, evita el
+    // bloqueo de popups de Safari)
+    const numero = '573184153751'
+    const mensaje = encodeURIComponent(
+      '¡Hola! Confirmo mi asistencia y la de mis acompañantes a los XV años de Sofía el 19 de Diciembre de 2026. ¡Nos vemos pronto! 🌟'
+    )
+    window.open(`https://wa.me/${numero}?text=${mensaje}`, '_blank')
 
-  // 2. Mostrar animación después
-  const newParticles = Array.from({ length: 150 }, (_, i) => ({
-    id: i,
-    left: `${Math.random() * 100}vw`,
-    top: `${Math.random() * -20}vh`,
-    fontSize: `${Math.random() * 1.5 + 0.8}rem`,
-    animationDelay: `${Math.random() * 1.5}s`,
-    animationDuration: `${Math.random() * 1.5 + 1.5}s`,
-  }))
-  setParticles(newParticles)
-  setConfirmado(true)
-  setTimeout(() => setParticles([]), 4000)
-}
-
+    // 2. Mostrar animación después
+    const newParticles = Array.from({ length: 80 }, (_, i) => ({
+      id: i,
+      left: `${Math.random() * 100}vw`,
+      top: `${Math.random() * -20}vh`,
+      fontSize: `${Math.random() * 1.5 + 0.8}rem`,
+      animationDelay: `${Math.random() * 1.5}s`,
+      animationDuration: `${Math.random() * 1.5 + 1.5}s`,
+    }))
+    setParticles(newParticles)
+    setConfirmado(true)
+    setTimeout(() => setParticles([]), 4000)
+  }
 
   const handleReset = () => {
     setConfirmado(false)
@@ -64,7 +64,7 @@ export default function Confirmacion() {
     }}>
 
       {/* Partículas de estrellas */}
-      {particles.map((p) => (
+      {particles.length > 0 && <div aria-hidden="true">{particles.map((p) => (
         <StarParticle key={p.id} style={{
           left: p.left,
           top: p.top,
@@ -72,7 +72,7 @@ export default function Confirmacion() {
           animationDelay: p.animationDelay,
           animationDuration: p.animationDuration,
         }} />
-      ))}
+      ))}</div>}
 
       {/* Tarjeta */}
       <div style={{
@@ -129,38 +129,31 @@ export default function Confirmacion() {
               color: 'rgb(255, 255, 255)',
               fontSize: 'clamp(1rem, 2.5vw, 1.15rem)',
               lineHeight: 1.8,
-              marginBottom: '2.5rem',
+              marginBottom: '1rem',
             }}>
               Tu presencia hará esta noche<br/>
               aún más especial para <span style={{ color: '#f5e642', fontStyle: 'italic' }}>Sofía</span>.
             </p>
 
+            <p style={{
+              fontFamily: "'Cormorant Garamond', serif",
+              fontStyle: 'italic',
+              color: 'rgba(245,230,66,0.75)',
+              fontSize: 'clamp(0.85rem, 2vw, 0.95rem)',
+              letterSpacing: '0.05em',
+              marginBottom: '2.5rem',
+            }}>
+              Por favor confirma antes del 1 de diciembre de 2026
+            </p>
+
             {/* Botón confirmar */}
             <button
               onClick={handleConfirmar}
+              className="btn-gold"
               style={{
-                background: 'linear-gradient(135deg, rgba(245,230,66,0.2), rgba(245,230,66,0.1))',
-                border: '1px solid rgba(245,230,66,0.5)',
-                borderRadius: '16px',
-                padding: '1rem 3rem',
-                cursor: 'pointer',
-                color: '#f5e642',
-                fontFamily: "'Cinzel Decorative', cursive",
                 fontSize: 'clamp(0.8rem, 2vw, 1rem)',
-                letterSpacing: '0.15em',
-                transition: 'all 0.3s',
                 width: '100%',
                 maxWidth: '320px',
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.background = 'linear-gradient(135deg, rgba(245,230,66,0.35), rgba(245,230,66,0.2))'
-                e.currentTarget.style.boxShadow = '0 0 30px rgba(245,230,66,0.3)'
-                e.currentTarget.style.transform = 'translateY(-2px)'
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.background = 'linear-gradient(135deg, rgba(245,230,66,0.2), rgba(245,230,66,0.1))'
-                e.currentTarget.style.boxShadow = 'none'
-                e.currentTarget.style.transform = 'translateY(0)'
               }}
             >
               ⭐ ¡Confirmo mi asistencia!
@@ -204,21 +197,8 @@ export default function Confirmacion() {
             {/* Botón volver */}
             <button
               onClick={handleReset}
-              style={{
-                background: 'none',
-                border: '1px solid rgb(255, 255, 255)',
-                borderRadius: '12px',
-                padding: '0.6rem 1.5rem',
-                cursor: 'pointer',
-                color: 'rgb(255, 255, 255)',
-                fontFamily: "'Cormorant Garamond', serif",
-                fontSize: '0.85rem',
-                letterSpacing: '0.1em',
-                transition: 'all 0.2s',
-                animation: 'fadeInUp 0.6s ease 0.6s both',
-              }}
-              onMouseEnter={e => e.currentTarget.style.color = 'rgb(255, 255, 255)'}
-              onMouseLeave={e => e.currentTarget.style.color = 'rgb(255, 255, 255)'}
+              className="btn-ghost"
+              style={{ animation: 'fadeInUp 0.6s ease 0.6s both' }}
             >
               ← Volver
             </button>
@@ -238,25 +218,6 @@ export default function Confirmacion() {
       }}>
         Con amor · Familia Florez Avendaño · 2026
       </p>
-
-      <style>{`
-        @keyframes starFall {
-          0%   { transform: translateY(0) rotate(0deg) scale(1); opacity: 1; }
-          100% { transform: translateY(100vh) rotate(720deg) scale(0.3); opacity: 0; }
-        }
-        @keyframes float {
-          0%, 100% { transform: translateY(0px); }
-          50%       { transform: translateY(-10px); }
-        }
-        @keyframes popIn {
-          0%   { transform: scale(0); opacity: 0; }
-          100% { transform: scale(1); opacity: 1; }
-        }
-        @keyframes fadeInUp {
-          from { opacity: 0; transform: translateY(20px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-      `}</style>
     </section>
   )
 }

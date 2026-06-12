@@ -1,6 +1,14 @@
 // src/components/sections/Details.jsx
-import { MapPin, Clock, Navigation } from 'lucide-react'
+import { MapPin, Clock, Navigation, CalendarPlus } from 'lucide-react'
 import { useScrollReveal } from '../../hooks/useScrollReveal'
+
+// Link "Agregar a Google Calendar" — 6:00 PM Colombia (UTC-5) = 23:00 UTC
+const calendarUrl =
+  'https://calendar.google.com/calendar/render?action=TEMPLATE' +
+  '&text=' + encodeURIComponent('XV Años de Sofía ✨') +
+  '&dates=20261219T230000Z/20261220T050000Z' +
+  '&details=' + encodeURIComponent('La Noche Estrellada de Sofía — ¡Te esperamos!') +
+  '&location=' + encodeURIComponent('Finca 8, Vereda La Mata, Autopista Piedecuesta, Floridablanca, Colombia')
 
 export default function Details() {
   const { ref, visible } = useScrollReveal()
@@ -21,6 +29,7 @@ export default function Details() {
         alignItems: 'center',
         justifyContent: 'center',
         padding: '5rem 2rem',
+        background: 'linear-gradient(180deg, transparent, rgba(5,11,31,0.4) 10%, rgba(5,11,31,0.4) 90%, transparent)',
       }}
     >
       {/* Título */}
@@ -157,7 +166,7 @@ export default function Details() {
                   lineHeight: 1.5,
                 }}
               >
-                Miércoles, 19 de Diciembre de 2026
+                Sábado, 19 de Diciembre de 2026
                 <br />
                 6:00 PM
               </p>
@@ -189,40 +198,33 @@ export default function Details() {
           />
         </div>
 
-        {/* Botón Cómo llegar */}
-        <a
-          href={googleMapsUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '0.75rem',
-            background: 'rgba(245,230,66,0.12)',
-            border: '1px solid rgba(245,230,66,0.5)',
-            borderRadius: '14px',
-            padding: '1rem 2rem',
-            color: '#f5e642',
-            fontFamily: "'Cinzel Decorative', cursive",
-            fontSize: 'clamp(0.75rem, 2vw, 0.9rem)',
-            letterSpacing: '0.15em',
-            textDecoration: 'none',
-            transition: 'all 0.3s',
-            cursor: 'pointer',
-          }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.background = 'rgba(245,230,66,0.22)'
-            e.currentTarget.style.boxShadow = '0 0 20px rgba(245,230,66,0.2)'
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.background = 'rgba(245,230,66,0.12)'
-            e.currentTarget.style.boxShadow = 'none'
-          }}
-        >
-          <Navigation size={18} />
-          Cómo Llegar
-        </a>
+        {/* Botones: Cómo llegar + Agregar al calendario */}
+        <div style={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          gap: '1rem',
+        }}>
+          <a
+            href={googleMapsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-gold"
+            style={{ flex: '1 1 240px', fontSize: 'clamp(0.75rem, 2vw, 0.9rem)', padding: '1rem 2rem' }}
+          >
+            <Navigation size={18} />
+            Cómo Llegar
+          </a>
+          <a
+            href={calendarUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-gold"
+            style={{ flex: '1 1 240px', fontSize: 'clamp(0.75rem, 2vw, 0.9rem)', padding: '1rem 2rem' }}
+          >
+            <CalendarPlus size={18} />
+            Agregar al Calendario
+          </a>
+        </div>
       </div>
     </section>
   )

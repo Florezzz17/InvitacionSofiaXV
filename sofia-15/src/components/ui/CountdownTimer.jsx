@@ -2,7 +2,9 @@
 // Cuenta regresiva hasta la fiesta de Sofía
 import { useState, useEffect } from 'react'
 
-const TARGET = new Date('2026-12-19T18:00:00') // 19 dic 2026, 6pm
+// 19 dic 2026, 6:00 PM hora de Colombia (UTC-5) — el offset explícito hace
+// que la cuenta sea la misma sin importar desde qué país se abra la invitación
+const TARGET = new Date('2026-12-19T18:00:00-05:00')
 
 function pad(n) {
   return String(n).padStart(2, '0')

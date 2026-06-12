@@ -26,6 +26,7 @@ export default function DressCode() {
       alignItems: 'center',
       justifyContent: 'center',
       padding: '5rem 2rem',
+      background: 'linear-gradient(180deg, transparent, rgba(5,11,31,0.4) 10%, rgba(5,11,31,0.4) 90%, transparent)',
     }}>
 
       {/* Título */}
@@ -180,19 +181,14 @@ export default function DressCode() {
                 alignItems: 'center',
                 gap: '0.4rem',
               }}>
-                <div style={{
+                <div className="color-swatch" style={{
                   width: '48px',
                   height: '48px',
                   borderRadius: '50%',
                   background: color,
-                  border: '2px solid rgba(255, 255, 255, 0)',
+                  border: '2px solid rgba(255, 255, 255, 0.18)',
                   boxShadow: '0 4px 12px rgba(0,0,0,0.4)',
-                  transition: 'transform 0.2s',
-                  cursor: 'default',
-                }}
-                  onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.15)'}
-                  onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}
-                />
+                }} />
                 <span style={{
                   fontFamily: "'Cormorant Garamond', serif",
                   color: 'rgb(255, 255, 255)',
@@ -206,8 +202,8 @@ export default function DressCode() {
           <p style={{
             fontFamily: "'Cormorant Garamond', serif",
             fontStyle: 'italic',
-            color: 'rgb(255, 255, 255)',
-            fontSize: '1.25rem',
+            color: 'rgba(255, 255, 255, 0.65)',
+            fontSize: '0.9rem',
             marginTop: '1.5rem',
           }}>
             * Esta es una guía de referencia, no una lista obligatoria.

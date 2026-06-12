@@ -16,7 +16,7 @@ const photos = [
 
 function GoldenFrame({ src, caption, index }) {
   return (
-    <div style={{
+    <div className="story-frame" style={{
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
@@ -56,6 +56,9 @@ function GoldenFrame({ src, caption, index }) {
         <img
           src={src}
           alt={caption}
+          loading="lazy"
+          decoding="async"
+          draggable={false}
           style={{
             width: '100%',
             height: 'clamp(260px, 35vw, 360px)',
@@ -119,15 +122,7 @@ export default function Story() {
       </div>
 
       {/* Galería horizontal con scroll */}
-      <div style={{
-        width: '100%',
-        overflowX: 'auto',
-        overflowY: 'visible',
-        paddingBottom: '2rem',
-        cursor: 'grab',
-        scrollbarWidth: 'none', // Firefox
-        msOverflowStyle: 'none', // IE
-      }}
+      <div className="story-gallery"
         onMouseDown={(e) => {
           const el = e.currentTarget
           el.style.cursor = 'grabbing'
@@ -169,14 +164,6 @@ export default function Story() {
       }}>
         ← Desliza para ver más →
       </p>
-
-      <style>{`
-        @keyframes fadeInUp {
-          from { opacity: 0; transform: translateY(30px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-        div::-webkit-scrollbar { display: none; }
-      `}</style>
     </section>
   )
 }
