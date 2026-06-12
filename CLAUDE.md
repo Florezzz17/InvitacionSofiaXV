@@ -24,31 +24,40 @@ Es una Single Page Application (SPA) con diseño temático "Starry Night" (Van G
 ```
 XVSOFIA1/
 ├── .github/workflows/deploy.yml   # CI/CD: deploy automático a GitHub Pages al hacer push a main
+├── generador-links.html            # Herramienta LOCAL (no se publica): genera links personalizados
 ├── sofia-15/                       # Directorio principal de la app
+│   ├── public/
+│   │   ├── musica.mp3             # Canción de fondo (suena al abrir la invitación)
+│   │   └── og.jpg                 # Imagen de previsualización Open Graph (WhatsApp)
 │   ├── src/
 │   │   ├── assets/
 │   │   │   ├── photos/            # foto1.jpg – foto5.jpg (galería de Sofía)
-│   │   │   └── starry-night.jpg   # Imagen de fondo Van Gogh
+│   │   │   └── starry-night.jpg   # Imagen de fondo Van Gogh (recomprimida, 314 KB)
 │   │   ├── components/
 │   │   │   ├── Background/
-│   │   │   │   └── StarryNight.jsx     # Estrellas 3D + fondo animado + giroscopio
+│   │   │   │   └── StarryNight.jsx     # Estrellas 3D + estrellas fugaces + Ken Burns + giroscopio
 │   │   │   ├── sections/
 │   │   │   │   ├── Hero.jsx            # Portada: título, fecha, countdown, ubicación
 │   │   │   │   ├── Story.jsx           # Galería horizontal con marcos dorados
-│   │   │   │   ├── Details.jsx         # Detalles del evento + mapa embebido
+│   │   │   │   ├── Details.jsx         # Detalles + mapa + Cómo Llegar / Agregar al Calendario
 │   │   │   │   ├── Programa.jsx        # Cronograma del evento (6PM–9PM)
 │   │   │   │   ├── DressCode.jsx       # Código de vestimenta + paleta de colores
 │   │   │   │   ├── LluviaDeSobres.jsx  # Sección de regalos (sobres)
-│   │   │   │   └── Confirmacion.jsx    # RSVP con integración WhatsApp
+│   │   │   │   ├── Indicaciones.jsx    # Info práctica: fecha límite RSVP, parqueo, hashtag
+│   │   │   │   └── Confirmacion.jsx    # RSVP con integración WhatsApp (personalizable)
 │   │   │   └── ui/
-│   │   │       ├── Navbar.jsx          # Navegación fija, scroll suave, hamburger mobile
+│   │   │       ├── Navbar.jsx          # Links inline desktop / hamburguesa móvil
+│   │   │       ├── Welcome.jsx         # Portada de apertura "Abrir Invitación ✨"
 │   │   │       └── CountdownTimer.jsx  # Contador regresivo en tiempo real
 │   │   ├── hooks/
-│   │   │   └── useDeviceOrientation.js # Hook giroscopio para paralaje 3D en móvil
-│   │   ├── App.jsx                # Componente raíz que ensambla todas las secciones
-│   │   ├── index.css              # Estilos globales + Tailwind
+│   │   │   ├── useDeviceOrientation.js # Giroscopio (ref + permiso iOS en primer toque)
+│   │   │   └── useScrollReveal.js      # Animación de entrada por sección (one-shot)
+│   │   ├── utils/
+│   │   │   └── guest.js           # Lee ?i=nombre&c=cupos para invitaciones personalizadas
+│   │   ├── App.jsx                # Raíz: portada, música, loader y todas las secciones
+│   │   ├── index.css              # Estilos globales, keyframes, .glass, .btn-gold, etc.
 │   │   └── main.jsx               # Punto de entrada React
-│   ├── index.html
+│   ├── index.html                 # Meta OG + favicon + loader estático
 │   ├── vite.config.js             # Base: /InvitacionSofiaXV/
 │   └── package.json
 └── CLAUDE.md                      # Este archivo
@@ -86,7 +95,7 @@ npm run lint      # ESLint
 - **Fondo:** Navy oscuro `#050b1f` con gradientes y estrellas 3D animadas
 - **Acento principal:** Dorado `#f5e642`
 - **Tipografía:** Cormorant Garamond (cuerpo), Cinzel Decorative (títulos)
-- **Efecto visual:** Glassmorphism (frosted glass), glow, blur
+- **Efecto visual:** Glassmorphism (frosted glass), glow, blur — centralizado en la clase `.glass`: blur 18px en desktop, **9px en pantallas táctiles** (`@media (pointer: coarse)`); mismo aspecto por la densidad de píxeles del móvil, mitad de costo de GPU. **No volver a poner `backdropFilter` inline en tarjetas** — usar `.glass`
 - **Responsive:** Mobile-first con `clamp()` para tipografía fluida
 
 ## Secciones de la SPA
@@ -106,7 +115,8 @@ npm run lint      # ESLint
 
 ### Música de fondo
 - App busca `public/musica.mp3` con un `fetch` HEAD; si existe y es audio, muestra el botón flotante 🔊 (`.music-btn`) y arranca la canción al abrir la invitación (volumen 0.45, loop)
-- **Si no hay archivo, no se muestra nada** — para activar la música basta con colocar `sofia-15/public/musica.mp3`
+- **Si no hay archivo, no se muestra nada** — para cambiar la canción basta con reemplazar `sofia-15/public/musica.mp3` (el nombre debe ser exactamente ese, en minúsculas)
+- Canción actual: la entregó el usuario el 2026-06-12 (3.22 MB, 3:45)
 
 ## Notas de Desarrollo
 
@@ -179,14 +189,14 @@ El fondo usa un shader GLSL custom en lugar del `pointsMaterial` original:
 
 - **Loader estático** en `index.html`: estrella dorada pulsando + "La Noche Estrellada de Sofía" visible desde el primer byte (el bundle JS pesa ~1.1 MB); App lo desvanece al montar
 - **Portada de apertura** (`Welcome.jsx`): "Tienes una invitación → Abrir Invitación ✨"; bloquea el scroll hasta abrir; el toque habilita giroscopio iOS y autoplay de música
-- **Música de fondo opcional**: detectada vía HEAD a `public/musica.mp3` (pendiente que el usuario agregue la canción); botón flotante de mute
+- **Música de fondo opcional**: detectada vía HEAD a `public/musica.mp3`; botón flotante de mute
 - **Animaciones del Hero** ahora arrancan al abrir la invitación (clase `.app-opened`), no al cargar la página
 - **Nueva sección Indicaciones** (`id="info"`, label "Información" en navbar): fecha límite de confirmación, parqueadero, noche campestre/abrigo, hashtag
 - **Ken Burns**: zoom 1.0→1.08 en 80s sobre el fondo Van Gogh (`.bg-kenburns`)
 - **Contraste mejorado**: gradiente oscurecedor detrás de Details, DressCode e Indicaciones
 - Fecha límite de RSVP repetida en la sección Confirmación
-- **Textos a confirmar por el usuario**: fecha límite (1 de diciembre de 2026), disponibilidad de parqueadero, hashtag #LaNocheDeSofia
-- **Pendientes decididos**: sección padres/padrinos (descartada por ahora), invitación personalizada por URL (en análisis)
+- **Textos CONFIRMADOS por el usuario**: fecha límite (1 de diciembre de 2026), la finca sí tiene parqueadero, hashtag #LaNocheDeSofia
+- **Decisión del usuario**: sección padres/padrinos descartada
 
 ## Invitaciones Personalizadas (sesión 2026-06-12, parte 3)
 
@@ -194,14 +204,31 @@ El fondo usa un shader GLSL custom en lugar del `pointsMaterial` original:
 - **Welcome**: con nombre muestra "— Esta invitación es para — / {nombre}" y "✦ N lugares reservados ✦"; sin parámetros, versión genérica intacta
 - **Confirmacion**: muestra el nombre del invitado y el mensaje de WhatsApp dice "Confirmo la asistencia de {nombre} (N personas)…"
 - **`generador-links.html`** (raíz del repo, NO se publica): herramienta local — pegar lista "Nombre, cupos" (uno por línea) → genera todos los links con encoding correcto y botones de copiar
-- Pendiente: el usuario pasará la lista de invitados en una próxima sesión
+- **⚠️ Al armar links a mano**: los espacios deben ir como `%20` o WhatsApp corta el link en el espacio — por eso usar siempre el generador
+- **PENDIENTE: el usuario pasará la lista de invitados en una próxima sesión**
+
+## Ajustes Finales (sesión 2026-06-12, parte 4)
+
+### Estrellas fugaces "sutil-pero-visible"
+- El usuario no las veía: eran de 2px, se apagaban apenas aparecían y el cuadro las camuflaba (además la portada de apertura las tapa — solo se ven tras abrir)
+- Ajuste aprobado: trazo de 3px con punto brillante en la cabeza (`::after`), doble resplandor (blanco + dorado), brillo pleno del 1.5% al 10% del ciclo, ciclos 9/12/15s → un destello cada ~4s en promedio
+- Viajan por detrás de las tarjetas de contenido (correcto); se aprecian en el cielo abierto de los costados
+
+### Rendimiento de scroll en móvil
+- Usuario reportó ~30fps al hacer scroll en celular de 120Hz; ya verificó que el fix funcionó: **va fluido**
+- Causa: `backdrop-filter: blur(18px)` inline en ~15 tarjetas sobre un fondo que anima en cada frame (canvas 3D + Ken Burns); en pantalla 3× el kernel real era ~54px de GPU por tarjeta
+- Fix sin cambiar el diseño: clase `.glass` (18px desktop / 9px táctil), blur inútil bajo el iframe del mapa eliminado, canvas `dpr` 2 → 1.5
+- El usuario y sus clientes valoran el diseño glassmorphism: **cualquier optimización futura debe preservar el aspecto visual**
 
 ## Historial de Commits
 
 | Hash | Descripción |
 |------|-------------|
+| `10773d3` | Optimizar fluidez de scroll en móvil sin cambiar el diseño (.glass) |
+| `013ee47` | Estrellas fugaces más visibles (sutil pero perceptible) |
+| `5b7b5b5` | Invitaciones personalizadas por URL (?i=nombre&c=cupos) + generador |
+| `f387c80` | Reemplazar canción de fondo |
+| `6063c75` | Corregir URL de Open Graph (usuario GitHub: Florezzz17, tres z) |
+| `243f7e0` | Mejora integral: bugs, experiencia de entrada, música y nueva sección |
 | `1dcaf5e` | Mejoras de diseño y correcciones visuales (sesión 2026-06-08) |
 | `273e7ee` | cambios ios 3 |
-| `4a940f5` | cambios ios 2 |
-| `966070f` | Cambios wsp apple |
-| `0879758` | Cambios en mensaje de wsp 5 |
