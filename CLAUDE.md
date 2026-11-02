@@ -235,6 +235,9 @@ El fondo usa un shader GLSL custom en lugar del `pointsMaterial` original:
 
 | Hash | Descripción |
 |------|-------------|
+| `aa15441` | Preparar el proyecto para publicarse también en Vercel |
+| `3328691` | Galería: cargar todas las fotos de entrada (se veía el marco vacío) |
+| `39fc47b` | Fotos de infancia en la galería, lugar "Copacabana" y letra más grande |
 | `10773d3` | Optimizar fluidez de scroll en móvil sin cambiar el diseño (.glass) |
 | `013ee47` | Estrellas fugaces más visibles (sutil pero perceptible) |
 | `5b7b5b5` | Invitaciones personalizadas por URL (?i=nombre&c=cupos) + generador |
