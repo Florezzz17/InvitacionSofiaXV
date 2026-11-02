@@ -37,7 +37,7 @@ export default function CountdownTimer() {
   ]
 
   return (
-    <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+    <div className="countdown">
       {units.map(({ label, value }) => (
         <div key={label} style={{
           display: 'flex',
@@ -46,8 +46,7 @@ export default function CountdownTimer() {
           background: 'rgba(255,255,255,0.08)',
           border: '1px solid rgba(245,230,66,0.3)',
           borderRadius: '12px',
-          padding: '0.75rem 1.25rem',
-          minWidth: '70px',
+          padding: '0.75rem 0.5rem',
         }}>
           <span style={{
             fontSize: 'clamp(1.8rem, 5vw, 2.8rem)',

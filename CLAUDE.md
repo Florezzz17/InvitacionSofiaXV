@@ -2,7 +2,7 @@
 
 ## Descripción del Proyecto
 
-Sitio web de invitación digital para los **XV años de Sofía**, celebrados el **19 de diciembre de 2026 a las 6:00 PM** en Finca 8, Vereda La Mata, Autopista Piedecuesta, Floridablanca, Colombia.
+Sitio web de invitación digital para los **XV años de Sofía**, celebrados el **19 de diciembre de 2026 a las 6:00 PM** en Copacabana, Vereda La Mata, Autopista Piedecuesta, Floridablanca, Colombia.
 
 Es una Single Page Application (SPA) con diseño temático "Starry Night" (Van Gogh), animaciones 3D y secciones interactivas. Está publicado en GitHub Pages.
 
@@ -86,7 +86,7 @@ npm run lint      # ESLint
 |-------|-------|
 | Celebrada | Sofía |
 | Fecha | 19 de diciembre de 2026, 6:00 PM |
-| Lugar | Finca 8, Vereda La Mata, Autopista Piedecuesta, Floridablanca, Colombia |
+| Lugar | Copacabana, Vereda La Mata, Autopista Piedecuesta, Floridablanca, Colombia |
 | WhatsApp RSVP | +573184153751 |
 
 ## Diseño & Estética
@@ -97,6 +97,8 @@ npm run lint      # ESLint
 - **Tipografía:** Cormorant Garamond (cuerpo), Cinzel Decorative (títulos)
 - **Efecto visual:** Glassmorphism (frosted glass), glow, blur — centralizado en la clase `.glass`: blur 18px en desktop, **9px en pantallas táctiles** (`@media (pointer: coarse)`); mismo aspecto por la densidad de píxeles del móvil, mitad de costo de GPU. **No volver a poner `backdropFilter` inline en tarjetas** — usar `.glass`
 - **Responsive:** Mobile-first con `clamp()` para tipografía fluida
+- **Tamaño de letra:** `html { font-size: 112.5% }` (18px base) para que las personas mayores lean mejor (pedido del usuario, 2026-11-02). Todos los `fontSize` usan `rem`, así que escalan juntos — **no usar `px` en tamaños de texto**
+- **Contador:** clase `.countdown` (grid 2×2 en móvil, 4 en fila ≥560px)
 
 ## Secciones de la SPA
 
@@ -206,6 +208,15 @@ El fondo usa un shader GLSL custom en lugar del `pointsMaterial` original:
 - **`generador-links.html`** (raíz del repo, NO se publica): herramienta local — pegar lista "Nombre, cupos" (uno por línea) → genera todos los links con encoding correcto y botones de copiar
 - **⚠️ Al armar links a mano**: los espacios deben ir como `%20` o WhatsApp corta el link en el espacio — por eso usar siempre el generador
 - **PENDIENTE: el usuario pasará la lista de invitados en una próxima sesión**
+
+## Pendientes (anotado 2026-11-02)
+
+- ~~Fotos nuevas~~ ✅ hecho 2026-11-02: `foto6.jpg` (bebé, Blancanieves — "Una pequeña princesa") y `foto7.jpg` (uniforme del colegio — "Primeros pasos, grandes sueños") van en la galería después de la 2ª foto
+- **Lugar renombrado** (2026-11-02): "Finca 8" → "Copacabana" en textos, calendario y OG. **El link "Cómo Llegar" (Google Maps) NO se cambió a propósito** — conserva la búsqueda original con coordenadas para que no lleve a Copacabana, Antioquia
+- **Lista de invitados**: generar los links personalizados; luego empezar a repartir (fecha límite RSVP: 1 dic 2026)
+- **Mensaje de WhatsApp editable**: el texto prellenado SIEMPRE es editable (limitación de WhatsApp). Opciones evaluadas, sin decidir:
+  1. Código de verificación corto al final del mensaje, derivado de nombre + cupos → si alguien cambia los cupos, el código no coincide (sencillo, sigue con WhatsApp) — recomendada
+  2. Formulario que envía a Google Sheets vía Apps Script (más robusto, pero requiere configuración y pierde el mensaje directo)
 
 ## Ajustes Finales (sesión 2026-06-12, parte 4)
 

@@ -5,10 +5,14 @@ import foto2 from '../../assets/photos/foto2.jpg'
 import foto3 from '../../assets/photos/foto3.jpg'
 import foto4 from '../../assets/photos/foto4.jpg'
 import foto5 from '../../assets/photos/foto5.jpg'
+import foto6 from '../../assets/photos/foto6.jpg'
+import foto7 from '../../assets/photos/foto7.jpg'
 
 const photos = [
   { src: foto2, caption: 'El comienzo de una historia' },
   { src: foto1, caption: 'Momentos que iluminan' },
+  { src: foto6, caption: 'Una pequeña princesa' },
+  { src: foto7, caption: 'Primeros pasos, grandes sueños' },
   { src: foto3, caption: 'Sueños que florecen' },
   { src: foto4, caption: 'Luz que no se apaga' },
   { src: foto5, caption: 'La protagonista de esta noche' },

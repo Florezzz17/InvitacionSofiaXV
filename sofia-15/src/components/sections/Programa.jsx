@@ -170,7 +170,8 @@ export default function Programa() {
         @media (max-width: 560px) {
           .programa-item { justify-content: center !important; }
           .programa-card  { width: 80% !important; }
-          .programa-dot   { left: 50% !important; transform: translateX(-50%) !important; }
+          /* En móvil la tarjeta queda sobre la línea: el punto va en el borde superior para no tapar la hora */
+          .programa-dot   { left: 50% !important; top: -7px !important; transform: translateX(-50%) !important; }
         }
       `}</style>
     </section>

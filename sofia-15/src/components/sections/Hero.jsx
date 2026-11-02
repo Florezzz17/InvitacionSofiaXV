@@ -109,7 +109,7 @@ export default function Hero() {
           gap: '0.4rem',
         }}>
           <MapPin size={14} color="rgba(245,230,66,0.7)" />
-          Finca 8, Vda. La Mata · Autopista Piedecuesta, Floridablanca
+          Copacabana, Vda. La Mata · Autopista Piedecuesta, Floridablanca
         </p>
 
         <button

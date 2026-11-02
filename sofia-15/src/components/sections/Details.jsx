@@ -8,7 +8,7 @@ const calendarUrl =
   '&text=' + encodeURIComponent('XV Años de Sofía ✨') +
   '&dates=20261219T230000Z/20261220T050000Z' +
   '&details=' + encodeURIComponent('La Noche Estrellada de Sofía — ¡Te esperamos!') +
-  '&location=' + encodeURIComponent('Finca 8, Vereda La Mata, Autopista Piedecuesta, Floridablanca, Colombia')
+  '&location=' + encodeURIComponent('Copacabana, Vereda La Mata, Autopista Piedecuesta, Floridablanca, Colombia')
 
 export default function Details() {
   const { ref, visible } = useScrollReveal()
@@ -118,7 +118,7 @@ export default function Details() {
                   lineHeight: 1.5,
                 }}
               >
-                Finca 8, Vereda La Mata
+                Copacabana, Vereda La Mata
                 <br />
                 Autopista Piedecuesta, Floridablanca
               </p>

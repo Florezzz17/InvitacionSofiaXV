@@ -8,6 +8,10 @@
 
 html {
   scroll-behavior: smooth;
+  /* Letra base 12.5% más grande (16px → 18px) para facilitar la lectura a
+     personas mayores. Todos los tamaños usan rem, así que escalan juntos.
+     En % (no px) para respetar el tamaño de letra configurado en el celular. */
+  font-size: 112.5%;
 }
 
 /* Evita que el navbar fijo tape el título al navegar a una sección */
@@ -360,5 +364,21 @@ body {
 
   html {
     scroll-behavior: auto;
+  }
+}
+
+/* Contador regresivo: 2×2 en celular, 4 en fila en pantallas anchas */
+.countdown {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  max-width: 340px;
+  margin: 0 auto;
+}
+
+@media (min-width: 560px) {
+  .countdown {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    max-width: 560px;
   }
 }
