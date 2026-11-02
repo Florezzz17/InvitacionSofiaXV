@@ -97,6 +97,7 @@ npm run lint      # ESLint
 - **Tipografía:** Cormorant Garamond (cuerpo), Cinzel Decorative (títulos)
 - **Efecto visual:** Glassmorphism (frosted glass), glow, blur — centralizado en la clase `.glass`: blur 18px en desktop, **9px en pantallas táctiles** (`@media (pointer: coarse)`); mismo aspecto por la densidad de píxeles del móvil, mitad de costo de GPU. **No volver a poner `backdropFilter` inline en tarjetas** — usar `.glass`
 - **Responsive:** Mobile-first con `clamp()` para tipografía fluida
+- **Galería:** las fotos NO usan `loading="lazy"` — en el scroll horizontal se cargaban tarde y se veía el marco dorado vacío (reportado 2026-11-02). Cargan mientras el invitado está en la portada
 - **Tamaño de letra:** `html { font-size: 112.5% }` (18px base) para que las personas mayores lean mejor (pedido del usuario, 2026-11-02). Todos los `fontSize` usan `rem`, así que escalan juntos — **no usar `px` en tamaños de texto**
 - **Contador:** clase `.countdown` (grid 2×2 en móvil, 4 en fila ≥560px)
 

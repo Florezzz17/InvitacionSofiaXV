@@ -60,7 +60,9 @@ function GoldenFrame({ src, caption, index }) {
         <img
           src={src}
           alt={caption}
-          loading="lazy"
+          /* Sin loading="lazy": en una galería horizontal el navegador las
+             pedía tarde y se veía el marco dorado vacío. Así cargan todas
+             mientras el invitado está en la portada (~800 KB en total). */
           decoding="async"
           draggable={false}
           style={{
@@ -69,6 +71,8 @@ function GoldenFrame({ src, caption, index }) {
             objectFit: 'cover',
             display: 'block',
             borderRadius: '2px',
+            // Si una foto aún no llega, se ve un fondo oscuro, no dorado
+            background: '#0b1430',
             filter: 'sepia(15%) contrast(1.05) brightness(0.95)',
           }}
         />
