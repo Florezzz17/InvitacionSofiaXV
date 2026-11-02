@@ -77,8 +77,9 @@ npm run lint      # ESLint
 
 - **Rama de deploy:** `main`
 - **Workflow:** `.github/workflows/deploy.yml` — se dispara en cada push a `main`
-- **URL pública:** `https://florezzz17.github.io/InvitacionSofiaXV/` (usuario de GitHub: `Florezzz17`, con tres "z")
-- **Base path Vite:** `/InvitacionSofiaXV/`
+- **URL PRINCIPAL (la que se reparte):** `https://invitacion-sofia-xv-eta.vercel.app` — Vercel (plan Hobby gratis), conectado al repo, Root Directory `sofia-15`, se redespliega solo en cada push a `main`. El "-eta" lo puso Vercel porque el nombre estaba tomado; el usuario lo aceptó (2026-11-02)
+- **URL de respaldo:** `https://florezzz17.github.io/InvitacionSofiaXV/` (usuario de GitHub: `Florezzz17`, con tres "z") — el usuario pidió dejarla funcionando
+- **Base path Vite:** automático en `vite.config.js` — `/` en Vercel (detecta `VERCEL=1`) y `/InvitacionSofiaXV/` en GitHub Pages. Las meta OG de `index.html` usan el marcador `__SITE_URL__`, que se reemplaza en el build según el dominio
 
 ## Datos del Evento
 
