@@ -207,16 +207,14 @@ El fondo usa un shader GLSL custom en lugar del `pointsMaterial` original:
 - **Confirmacion**: muestra el nombre del invitado y el mensaje de WhatsApp dice "Confirmo la asistencia de {nombre} (N personas)…"
 - **`generador-links.html`** (raíz del repo, NO se publica): herramienta local — pegar lista "Nombre, cupos" (uno por línea) → genera todos los links con encoding correcto y botones de copiar
 - **⚠️ Al armar links a mano**: los espacios deben ir como `%20` o WhatsApp corta el link en el espacio — por eso usar siempre el generador
-- **PENDIENTE: el usuario pasará la lista de invitados en una próxima sesión**
+- **DESCARTADO (2026-11-02)**: el usuario decidió NO usar links personalizados — se envía el link genérico a cada persona y cada quien confirma por WhatsApp. El código de `?i=&c=` sigue en el proyecto pero no se usa (sin parámetros todo funciona en versión genérica)
 
 ## Pendientes (anotado 2026-11-02)
 
 - ~~Fotos nuevas~~ ✅ hecho 2026-11-02: `foto6.jpg` (bebé, Blancanieves — "Una pequeña princesa") y `foto7.jpg` (uniforme del colegio — "Primeros pasos, grandes sueños") van en la galería después de la 2ª foto
 - **Lugar renombrado** (2026-11-02): "Finca 8" → "Copacabana" en textos, calendario y OG. **El link "Cómo Llegar" (Google Maps) NO se cambió a propósito** — conserva la búsqueda original con coordenadas para que no lleve a Copacabana, Antioquia
-- **Lista de invitados**: generar los links personalizados; luego empezar a repartir (fecha límite RSVP: 1 dic 2026)
-- **Mensaje de WhatsApp editable**: el texto prellenado SIEMPRE es editable (limitación de WhatsApp). Opciones evaluadas, sin decidir:
-  1. Código de verificación corto al final del mensaje, derivado de nombre + cupos → si alguien cambia los cupos, el código no coincide (sencillo, sigue con WhatsApp) — recomendada
-  2. Formulario que envía a Google Sheets vía Apps Script (más robusto, pero requiere configuración y pierde el mensaje directo)
+- ~~Lista de invitados / links personalizados~~ ❌ descartado 2026-11-02: se reparte el link genérico
+- ~~Código de verificación en el mensaje de WhatsApp~~ ❌ descartado 2026-11-02
 
 ## Ajustes Finales (sesión 2026-06-12, parte 4)
 
