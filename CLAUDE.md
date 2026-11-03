@@ -213,8 +213,9 @@ El fondo usa un shader GLSL custom en lugar del `pointsMaterial` original:
 
 ## Pendientes (anotado 2026-11-02)
 
-- ~~Fotos nuevas~~ ✅ hecho 2026-11-02: `foto6.jpg` (bebé, Blancanieves — "Una pequeña princesa") y `foto7.jpg` (uniforme del colegio — "Primeros pasos, grandes sueños") van en la galería después de la 2ª foto
-- **Lugar renombrado** (2026-11-02): "Finca 8" → "Copacabana" en textos, calendario y OG. **El link "Cómo Llegar" (Google Maps) NO se cambió a propósito** — conserva la búsqueda original con coordenadas para que no lleve a Copacabana, Antioquia
+- **Galería con 10 fotos** (2026-11-03): el usuario numeró las fotos `foto1`–`foto10` (algunas `.jpeg`) y la galería las muestra **en orden numérico 1→10**, cada una con su caption en `Story.jsx`. Para cambiar el orden, renombrar los archivos o editar el arreglo `photos`
+- **Lugar renombrado** (2026-11-02): "Finca 8" → "Copacabana" en textos, calendario y OG
+- **Ubicación corregida** (2026-11-03): el usuario dio el link correcto `https://maps.app.goo.gl/46EGPsa7F2ueoBst7` = **Copacabana Club-Eventos** (7.0135312, -73.0571344). "Cómo Llegar" usa ese link directo y el mapa embebido esas coordenadas (antes 7.0130127, -73.0606502, ~400 m al oeste)
 - ~~Lista de invitados / links personalizados~~ ❌ descartado 2026-11-02: se reparte el link genérico
 - ~~Código de verificación en el mensaje de WhatsApp~~ ❌ descartado 2026-11-02
 

@@ -12,8 +12,8 @@ const calendarUrl =
 
 export default function Details() {
   const { ref, visible } = useScrollReveal()
-  const googleMapsUrl =
-    'https://www.google.com/maps/search/FINCA+8+VDA.+LA+MATA+-+AUTOPISTA+PIEDECUESTA+-+FLORIDABLANCA+,+Piedecuesta,+Colombia,+Piedecuesta,+681011/@7.0130127,-73.0606502,17z/data=!3m1!4b1?entry=ttu&g_ep=EgoyMDI2MDMwNC4xIKXMDSoASAFQAw%3D%3D'
+  // Copacabana Club-Eventos (7.0135312, -73.0571344) — link entregado por el usuario 2026-11-03
+  const googleMapsUrl = 'https://maps.app.goo.gl/46EGPsa7F2ueoBst7'
 
   return (
     <section
@@ -189,7 +189,7 @@ export default function Details() {
             height="100%"
             frameBorder="0"
             style={{ border: 0, filter: 'invert(90%) hue-rotate(180deg)' }}
-            src="https://maps.google.com/maps?q=7.0130127,-73.0606502&z=17&output=embed"
+            src="https://maps.google.com/maps?q=7.0135312,-73.0571344&z=17&output=embed"
             allowFullScreen
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"

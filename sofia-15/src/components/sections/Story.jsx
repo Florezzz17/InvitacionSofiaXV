@@ -4,18 +4,25 @@ import foto1 from '../../assets/photos/foto1.jpg'
 import foto2 from '../../assets/photos/foto2.jpg'
 import foto3 from '../../assets/photos/foto3.jpg'
 import foto4 from '../../assets/photos/foto4.jpg'
-import foto5 from '../../assets/photos/foto5.jpg'
-import foto6 from '../../assets/photos/foto6.jpg'
+import foto5 from '../../assets/photos/foto5.jpeg'
+import foto6 from '../../assets/photos/foto6.jpeg'
 import foto7 from '../../assets/photos/foto7.jpg'
+import foto8 from '../../assets/photos/foto8.jpg'
+import foto9 from '../../assets/photos/foto9.jpg'
+import foto10 from '../../assets/photos/foto10.jpeg'
 
+// Orden 1 → 10 según el número de cada foto (definido por el usuario 2026-11-03)
 const photos = [
+  { src: foto1, caption: 'Una sonrisa que lo ilumina todo' },
   { src: foto2, caption: 'El comienzo de una historia' },
-  { src: foto1, caption: 'Momentos que iluminan' },
-  { src: foto6, caption: 'Una pequeña princesa' },
-  { src: foto7, caption: 'Primeros pasos, grandes sueños' },
-  { src: foto3, caption: 'Sueños que florecen' },
-  { src: foto4, caption: 'Luz que no se apaga' },
-  { src: foto5, caption: 'La protagonista de esta noche' },
+  { src: foto3, caption: 'Una pequeña princesa' },
+  { src: foto4, caption: 'Primeros pasos, grandes sueños' },
+  { src: foto5, caption: 'Creciendo con alegría' },
+  { src: foto6, caption: 'Sueños que florecen' },
+  { src: foto7, caption: 'Brillando con luz propia' },
+  { src: foto8, caption: 'Un estilo único' },
+  { src: foto9, caption: 'Luz que no se apaga' },
+  { src: foto10, caption: 'La protagonista de esta noche' },
 ]
 
 function GoldenFrame({ src, caption, index }) {
