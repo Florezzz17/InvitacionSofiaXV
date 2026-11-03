@@ -13,9 +13,9 @@ import foto10 from '../../assets/photos/foto10.jpeg'
 
 // Orden 1 → 10 según el número de cada foto (definido por el usuario 2026-11-03)
 const photos = [
-  { src: foto1, caption: 'Una sonrisa que lo ilumina todo' },
-  { src: foto2, caption: 'El comienzo de una historia' },
-  { src: foto3, caption: 'Una pequeña princesa' },
+  { src: foto1, caption: 'El comienzo de una historia' },
+  { src: foto2, caption: 'Una pequeña princesa' },
+  { src: foto3, caption: 'Una sonrisa que lo ilumina todo' },
   { src: foto4, caption: 'Primeros pasos, grandes sueños' },
   { src: foto5, caption: 'Creciendo con alegría' },
   { src: foto6, caption: 'Sueños que florecen' },

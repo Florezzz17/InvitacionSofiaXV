@@ -213,7 +213,7 @@ El fondo usa un shader GLSL custom en lugar del `pointsMaterial` original:
 
 ## Pendientes (anotado 2026-11-02)
 
-- **Galería con 10 fotos** (2026-11-03): el usuario numeró las fotos `foto1`–`foto10` (algunas `.jpeg`) y la galería las muestra **en orden numérico 1→10**, cada una con su caption en `Story.jsx`. Para cambiar el orden, renombrar los archivos o editar el arreglo `photos`
+- **Galería con 10 fotos** (2026-11-03): el usuario numeró las fotos `foto1`–`foto10` (algunas `.jpeg`) y la galería las muestra **en orden numérico 1→10**, cada una con su caption en `Story.jsx`. Para cambiar el orden, renombrar los archivos o editar el arreglo `photos` (**y revisar que los captions sigan correspondiendo**). Las fotos se redujeron a **720 px de ancho** (calidad 82): con 10 fotos de 1200–1923 px, en celular los últimos marcos salían vacíos (memoria). **Toda foto nueva debe reducirse a ~720 px de ancho antes de agregarla**
 - **Lugar renombrado** (2026-11-02): "Finca 8" → "Copacabana" en textos, calendario y OG
 - **Ubicación corregida** (2026-11-03): el usuario dio el link correcto `https://maps.app.goo.gl/46EGPsa7F2ueoBst7` = **Copacabana Club-Eventos** (7.0135312, -73.0571344). "Cómo Llegar" usa ese link directo y el mapa embebido esas coordenadas (antes 7.0130127, -73.0606502, ~400 m al oeste)
 - ~~Lista de invitados / links personalizados~~ ❌ descartado 2026-11-02: se reparte el link genérico
